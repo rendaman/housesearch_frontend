@@ -1,3 +1,83 @@
 <template>
-  <h1>Hello world!</h1>
+  <div class="index">
+    <div class="top-logo position-relative overflow-hidden p-2 p-md-2 m-md-2 text-center">
+      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
+          <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+          <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+          <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"></li>
+          <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"></li>
+          <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src='@/assets/images/bg_haimu.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH" class="img-fluid mx-auto">
+          </div>
+          <div class="carousel-item">
+            <img src='@/assets/images/bg_sekisui.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH" class="img-fluid mx-auto">
+          </div>
+          <div class="carousel-item">
+            <img src='@/assets/images/bg_hebel.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH" class="img-fluid mx-auto">
+          </div>
+          <div class="carousel-item">
+            <img src='@/assets/images/bg_daiwa.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH" class="img-fluid mx-auto">
+          </div>
+          <div class="carousel-item">
+            <img src='@/assets/images/bg_pana.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH" class="img-fluid mx-auto">
+          </div>
+          <div class="carousel-item">
+            <img src='@/assets/images/bg_toyota.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH" class="img-fluid mx-auto">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center top-message">
+      <div class="my-5">
+        <h4>住宅メーカーのこだわりや特徴</h4>
+      </div>
+      <div class="mx-auto my-5">
+        <p>こだわりや特徴を見比べて、最適な依頼先を見つけましょう。</p>
+      </div>
+    </div>
+    <div id="app">
+      <div class="pt-4">
+        <div class="col-10 col-md-8 col-lg-6 mx-auto">
+          <input type="text" v-model="keyword" class="searchbox" placeholder="例）メーカー名など">
+        </div>
+      </div>
+      <div class="row row-cols-1 row-cols-md-2 g-0 col-md-10 mx-auto py-3">
+        <div v-for="maker in filteredMakers" :key="maker.pk">
+          <div class="card-container">
+            <div class="mx-auto px-4 col card-col">
+              <nuxt-link :to="`/detail/${maker.pk}`" class="my-3">
+                <div class="maker-card p-2">
+                  <div class="row">
+                    <div class="col-5 maker-card-image">
+                      <img v-bind:src="maker.image_url" v-bind:alt="maker.name" v-bind:title="maker.name" class="card-img-top" >
+                    </div>
+                    <div class="col-7 d-flex align-items-center">
+                      <p class="card-title ps-3">{{maker.name}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="card-body">
+                      <p class="card-text review-p" v-html="maker.ratetostr"></p>
+                      <p class="card-text review-p">{{ parseFloat(maker.get_rateavg).toFixed(1) }} | 口コミ：{{ maker.get_review_count }}件</p><br>
+                      <p class="card-text review-p">平均費用：{{ parseFloat(maker.get_expense_avg).toFixed(1) }}万円 | 費用明細：{{ maker.get_expense_count }}件</p><br>
+                      <p class="card-text review-p">平均坪数：{{ parseFloat(maker.get_landarea_avg).toFixed(1) }}坪</p>
+                    </div>
+                  </div>
+                </div>
+              </nuxt-link>
+              <hr class="my-3">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
+
+<script src="@/assets/js/list.js"></script>
+<style src="@/assets/css/list.css"></style>
