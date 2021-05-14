@@ -3,7 +3,7 @@ const GAcode = `window.dataLayer = window.dataLayer || []; function gtag(){dataL
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
+  target: 'server',
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -36,7 +36,6 @@ export default {
     ],
     script: [
       { src: "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js", integrity:"sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW", crossorigin:"anonymous"},
-      { src: "https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" },
       { src: "https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js" },
       {
         hid: 'GAsrc',
@@ -59,7 +58,8 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/assets/css/base.css',
+    '@/assets/css/acancel.scss',
+    '@/assets/css/mixin.scss'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -76,17 +76,42 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios'],
-
+  modules: [
+    '@nuxtjs/axios',
+    '@nuxtjs/auth',
+  ],
+  proxy: {
+    '/api/': 'http://localhost:8000',
+    '/auth/': 'http://localhost:8000',
+  },
   axios: {
     proxy: true,
   },
-  
-  proxy: {
-    '/api/': 'http://localhost:8000',
-  },
+  auth: {
+    redirect: {
+      login: '/login', 
+      logout: '/',
+      callback: false,
+      home: '/'
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: 'http://localhost:8000/auth/', method: 'post', propertyName: 'token.accessToken'},
+          logout: false,
+          user: false
+        }
+      }
+    }  
+  },  
+
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    babel: {
+      presets({ isServer }, [ preset, options ]) {
+        options.loose = true;
+      }
+    }
   }
 }

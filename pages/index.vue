@@ -1,36 +1,13 @@
 <template>
   <div class="index">
-    <div class="top-logo position-relative overflow-hidden p-2 p-md-2 m-md-2 text-center">
-      <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
-          <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
-          <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
-          <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3"></li>
-          <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4"></li>
-          <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src='@/assets/images/bg_haimu.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH" class="img-fluid mx-auto">
-          </div>
-          <div class="carousel-item">
-            <img src='@/assets/images/bg_sekisui.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH" class="img-fluid mx-auto">
-          </div>
-          <div class="carousel-item">
-            <img src='@/assets/images/bg_hebel.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH" class="img-fluid mx-auto">
-          </div>
-          <div class="carousel-item">
-            <img src='@/assets/images/bg_daiwa.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH" class="img-fluid mx-auto">
-          </div>
-          <div class="carousel-item">
-            <img src='@/assets/images/bg_pana.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH" class="img-fluid mx-auto">
-          </div>
-          <div class="carousel-item">
-            <img src='@/assets/images/bg_toyota.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH" class="img-fluid mx-auto">
-          </div>
-        </div>
-      </div>
+    <div class="carousel-container">
+      <VueSlickCarousel v-bind="settings">
+        <img src='@/assets/images/carousel1.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
+        <img src='@/assets/images/carousel2.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
+        <img src='@/assets/images/carousel3.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
+        <img src='@/assets/images/carousel4.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
+        <img src='@/assets/images/carousel5.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
+      </VueSlickCarousel>
     </div>
     <div class="text-center top-message">
       <div class="my-5">
@@ -50,11 +27,11 @@
         <div v-for="maker in filteredMakers" :key="maker.pk">
           <div class="card-container">
             <div class="mx-auto px-4 col card-col">
-              <nuxt-link :to="`/detail/${maker.pk}`" class="my-3">
+              <nuxt-link :to="`/detail/${maker.name_eng}`" class="my-3">
                 <div class="maker-card p-2">
                   <div class="row">
                     <div class="col-5 maker-card-image">
-                      <img v-bind:src="maker.image_url" v-bind:alt="maker.name" v-bind:title="maker.name" class="card-img-top" >
+                      <img v-bind:src="maker.image_url" v-bind:alt="maker.name" v-bind:title="maker.name" class="maker-card-image-top" >
                     </div>
                     <div class="col-7 d-flex align-items-center">
                       <p class="card-title ps-3">{{maker.name}}</p>
@@ -62,10 +39,10 @@
                   </div>
                   <div class="row">
                     <div class="card-body">
-                      <p class="card-text review-p" v-html="maker.ratetostr"></p>
-                      <p class="card-text review-p">{{ parseFloat(maker.get_rateavg).toFixed(1) }} | 口コミ：{{ maker.get_review_count }}件</p><br>
-                      <p class="card-text review-p">平均費用：{{ parseFloat(maker.get_expense_avg).toFixed(1) }}万円 | 費用明細：{{ maker.get_expense_count }}件</p><br>
-                      <p class="card-text review-p">平均坪数：{{ parseFloat(maker.get_landarea_avg).toFixed(1) }}坪</p>
+                      <p class="card-text maker-card-review-p" v-html="maker.ratetostr"></p>
+                      <p class="card-text maker-card-review-p">{{ parseFloat(maker.get_rateavg).toFixed(1) }} | 口コミ：{{ maker.get_review_count }}件</p><br>
+                      <p class="card-text maker-card-review-p">平均費用：{{ parseFloat(maker.get_expense_avg).toFixed(1) }}万円 | 費用明細：{{ maker.get_expense_count }}件</p><br>
+                      <p class="card-text maker-card-review-p">平均坪数：{{ parseFloat(maker.get_landarea_avg).toFixed(1) }}坪</p>
                     </div>
                   </div>
                 </div>
@@ -79,5 +56,206 @@
   </div>
 </template>
 
-<script src="@/assets/js/list.js"></script>
-<style src="@/assets/css/list.css"></style>
+<script>
+import VueSlickCarousel from 'vue-slick-carousel'
+import 'vue-slick-carousel/dist/vue-slick-carousel.css'
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+export default {
+  components: { VueSlickCarousel },
+  async asyncData({ $axios }) {
+    const url = 'api/makers/'
+    const makers = await $axios.$get(url)
+    return {makers}
+  },
+  data () {
+    return {
+      keyword: "",
+      settings: {
+        "dots": false,
+        "infinite": true,
+        "slidesToShow": 1,
+        "slidesToScroll": 1,
+        "swipeToSlide": true,
+        "autoplay": true,
+        "speed": 1000,
+        "autoplaySpeed": 5000,
+        "pauseOnFocus": true,
+        "centerMode": true,
+        "variableWidth": true,
+      },
+    }
+  },
+  computed: {
+    filteredMakers () {
+      let makers = []
+      for(let i = 0; i < this.makers.length; i++) {
+        let maker = this.makers[i];
+        if(
+          maker.name.indexOf(this.keyword) !== -1 ||
+          maker.name_hira.indexOf(this.keyword) !== -1 ||
+          maker.name_kata.indexOf(this.keyword) !== -1 ||
+          maker.name_eng.indexOf(this.keyword) !== -1
+        ) {
+          makers.push(maker);
+        }
+      }
+      return makers;
+    }
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+.index {
+  .carousel-container{
+    overflow: hidden;
+    img {
+      -webkit-user-drag: none;
+      height: 618px;
+      width: 1000px;
+    }
+  }
+
+  .top-message {
+      border-top: solid 1px #BCBCBC;
+      border-bottom: solid 1px #BCBCBC;
+  }
+  
+  input.searchbox {
+      width: 100%;
+      padding-left: 2.5%;
+      line-height: 2.0;
+      border-radius:25px;
+      outline:0;
+  }
+
+  .card-col {
+    max-width: 720px;
+  }
+
+  .maker-card {
+    height: 200px;
+    background-color: #fff;
+    transition: 0.5s;
+ 
+    &:hover {
+      background-color: #f5f5f5;
+    }
+
+    &-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80px;
+
+        img {
+          height: auto;
+          width: 100px;
+        }
+    }
+      
+    .card-body {
+      padding-top: 10px;
+      padding-bottom: 0;
+    }
+
+    .card-title {
+      border-left: solid 1px #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', sans-serif;
+      font-weight: bold; 
+      font-size: 15px;
+      line-height: 100%;
+      height: 40px;
+    }
+
+    &-review-p {
+      font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', sans-serif;
+      font-size: 14px;
+      color: #000;
+      font-weight: 300;
+      line-height: 0.5;
+      display: inline;
+    }
+
+    i {
+      font-size: large; 
+    }
+  }
+
+
+
+  /* iPad用 */
+  @media screen and (max-width:840px) { 
+      .maker-card {
+          height: 200px;
+          background-color: #f5f5f5;
+      }
+      p.card-text {
+          font-size: 13px;
+      }
+
+      .card-body {
+          padding-top: 0;
+          padding-bottom: 0;
+      }
+
+      i.rateicon {
+          font-size: medium; 
+      }
+
+      .maker-card-image {
+          height: 90px;
+      }
+
+      img.card-img-top {
+          height: auto;
+          width: 100px;
+      }
+
+      .card-title {
+          font-size: 13px;
+      }
+  }
+  /* スマホ用 */
+  @media screen and (max-width:480px) { 
+      .carousel-container{
+       img.slickitem {
+        width: 100vw;
+        }
+      }
+
+      .maker-card {
+          height: 190px;
+          background-color: #f5f5f5;
+      }
+      p.card-text {
+          font-size: 12px;
+      }
+
+      .card-body {
+          padding-top: 0;
+          padding-bottom: 0;
+      }
+
+      i.rateicon {
+          font-size: medium; 
+      }
+
+      .maker-card-image {
+          height: 90px;
+      }
+
+      img.maker-card-img-top {
+          height: auto;
+          width: 100px;
+      }
+
+      .card-title {
+          font-size: 13px;
+      }
+  }
+}
+</style>

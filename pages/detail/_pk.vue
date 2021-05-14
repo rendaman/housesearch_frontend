@@ -3,12 +3,16 @@
     <div class="mx-auto">
       <div class="maker-card p-2">
         <div class="row">
-          <div class="col-4 maker-card-image pe-3">
+          <div class="col-4 makerdetail-top-image">
             <img v-bind:src="maker.image_url" v-bind:alt="maker.name" v-bind:title="maker.name" class="card-img-top" >
           </div>
-          <div class="col-8 ps-3">
-            <h5 class="card-title">{{maker.name}}</h5>
+          <div class="col-8 makerdetail-title">
+            <h1>{{maker.name}}</h1>
           </div>
+          <MakerBrand
+            :maker="maker"
+          >
+          <MakerBrand/>
         </div>
         <div class="row">
           <div class="card-body">
@@ -21,10 +25,9 @@
         </div>
       </div>
     </div>
-    <!--
     <div class="revnav" >
         <div class="text-center py-3">
-          <a class="col-3 mx-3" href="{% url 'review' maker.pk %}"><i class="bi bi-chat-dots-fill"></i>口コミ一覧</a>
+          <nuxt-link :to="`/review/${maker.name_eng}`" class="col-3 mx-3"><i class="bi bi-chat-dots-fill"></i>口コミ一覧</nuxt-link>
           <a class="col-3 mx-3" href="{% url 'expense' maker.pk %}"><i class="bi bi-cash-stack"></i>費用明細一覧</a>
         </div>
         <div class="text-center py-3">
@@ -32,9 +35,30 @@
           <a class="col-3 mx-2" href="{% url 'postexpense' maker.pk %}"><button class="w-30 btn btn-primary"> 費用明細を投稿する</button></a>
         </div>
     </div>
-    -->
   </div>
 </template>
 
-<script src="@/assets/js/detail.js"></script>
-<style src="@/assets/css/detail.css"></style>
+<script>
+import MakerBrand from '~/components/molecules/maker-brand.vue'
+export default {
+  data () {
+    return {
+      maker: ''
+    }
+  },
+  components: {
+    MakerBrand: MakerBrand,
+  },
+  async asyncData({ $axios, params }) {
+    const url = 'api/makers/' + `${params.pk}`  + '/'
+    const maker = await $axios.$get(url)
+    return {maker}
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+.revnav {
+    border-bottom: solid 1px #BCBCBC;
+}
+</style>

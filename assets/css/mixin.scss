@@ -1,0 +1,22 @@
+//Device Sizes
+$pc: 1024px;
+$tab: 840px;
+$sp: 480px;
+
+@mixin pc {
+  @media screen and (min-width: ($pc)) {
+    @content;
+  }
+}
+ 
+@mixin tab {
+  @media screen and (min-width: ($tab)) {
+    @content;
+  }
+}
+ 
+@mixin sp {
+  @media screen and (min-width: ($sp)) {
+    @content;
+  }
+}
