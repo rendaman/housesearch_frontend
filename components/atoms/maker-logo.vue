@@ -1,6 +1,8 @@
 <template>
     <div class="maker-logo"> 
-        <img v-bind:src="maker.image_url" v-bind:alt="maker.name" v-bind:title="maker.name">
+        <div class="maker-logo-container mx-3">
+            <nuxt-link :to="`/detail/${maker.name_eng}`"><img v-bind:src="maker.image_url" v-bind:alt="maker.name" v-bind:title="maker.name"></nuxt-link>
+        </div>
     </div>
 </template>
 
@@ -8,32 +10,32 @@
 @import "@/assets/css/mixin.scss";
 .maker-logo { 
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    @include pc{
-        height: 100px;
+    &-container{
+        justify-content: flex-end;
         img {
-          height: auto;
-          width: 100px;
+            height: auto;
+            width: 300px;
         }
-    }
-    @include sp{
-        height: 80px;
-        img {
-          height: auto;
-          width: 100px;
+        @include tab{
+            img {
+                height: auto;
+                width: 200px;
+            }
+        }
+        @include sp{
+            img {
+                height: auto;
+                width: 150px;
+            }
         }
     }
 }
 </style>
 
 <script>
-import maker from "../molecules/maker-brand"
 export default {
-    data() {
-        return {
-            maker: maker
-        }
-    },
+    props: ['maker']
 }
 </script>

@@ -97,9 +97,9 @@ export default {
     strategies: {
       local: {
         endpoints: {
-          login: { url: 'http://localhost:8000/auth/', method: 'post', propertyName: 'token.accessToken'},
+          login: { url: 'http://localhost:8000/auth/', method: 'post', propertyName: 'token'},
           logout: false,
-          user: false
+          user: { url: 'http://localhost:8000/api/user/', method: 'get', propertyName: 'username' }
         }
       }
     }  

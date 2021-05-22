@@ -1,22 +1,22 @@
 //Device Sizes
-$pc: 1024px;
-$tab: 840px;
+$tab: 1024px;
 $sp: 480px;
 
-@mixin pc {
-  @media screen and (min-width: ($pc)) {
-    @content;
-  }
-}
- 
+//Theme Colors
+$maincolor: #3751FA;
+$subcolor: #6478FA;
+
 @mixin tab {
-  @media screen and (min-width: ($tab)) {
+  @media screen and (max-width: ($tab)) {
     @content;
   }
 }
- 
+
 @mixin sp {
-  @media screen and (min-width: ($sp)) {
+  @media screen and (max-width: ($sp)) {
     @content;
   }
 }
+
+
+

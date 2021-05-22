@@ -1,59 +1,59 @@
 <template>
-  <div class="index">
-    <div class="carousel-container">
-      <VueSlickCarousel v-bind="settings">
-        <img src='@/assets/images/carousel1.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
-        <img src='@/assets/images/carousel2.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
-        <img src='@/assets/images/carousel3.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
-        <img src='@/assets/images/carousel4.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
-        <img src='@/assets/images/carousel5.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
-      </VueSlickCarousel>
-    </div>
-    <div class="text-center top-message">
-      <div class="my-5">
-        <h4>住宅メーカーのこだわりや特徴</h4>
-      </div>
-      <div class="mx-auto my-5">
-        <p>こだわりや特徴を見比べて、最適な依頼先を見つけましょう。</p>
-      </div>
-    </div>
-    <div id="app">
-      <div class="pt-4">
-        <div class="col-10 col-md-8 col-lg-6 mx-auto">
-          <input type="text" v-model="keyword" class="searchbox" placeholder="例）メーカー名など">
+    <div class="index">
+        <div class="carousel-container">
+            <VueSlickCarousel v-bind="settings">
+                <img src='@/assets/images/carousel1.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
+                <img src='@/assets/images/carousel2.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
+                <img src='@/assets/images/carousel3.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
+                <img src='@/assets/images/carousel4.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
+                <img src='@/assets/images/carousel5.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
+            </VueSlickCarousel>
         </div>
-      </div>
-      <div class="row row-cols-1 row-cols-md-2 g-0 col-md-10 mx-auto py-3">
-        <div v-for="maker in filteredMakers" :key="maker.pk">
-          <div class="card-container">
-            <div class="mx-auto px-4 col card-col">
-              <nuxt-link :to="`/detail/${maker.name_eng}`" class="my-3">
-                <div class="maker-card p-2">
-                  <div class="row">
-                    <div class="col-5 maker-card-image">
-                      <img v-bind:src="maker.image_url" v-bind:alt="maker.name" v-bind:title="maker.name" class="maker-card-image-top" >
-                    </div>
-                    <div class="col-7 d-flex align-items-center">
-                      <p class="card-title ps-3">{{maker.name}}</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="card-body">
-                      <p class="card-text maker-card-review-p" v-html="maker.ratetostr"></p>
-                      <p class="card-text maker-card-review-p">{{ parseFloat(maker.get_rateavg).toFixed(1) }} | 口コミ：{{ maker.get_review_count }}件</p><br>
-                      <p class="card-text maker-card-review-p">平均費用：{{ parseFloat(maker.get_expense_avg).toFixed(1) }}万円 | 費用明細：{{ maker.get_expense_count }}件</p><br>
-                      <p class="card-text maker-card-review-p">平均坪数：{{ parseFloat(maker.get_landarea_avg).toFixed(1) }}坪</p>
-                    </div>
-                  </div>
-                </div>
-              </nuxt-link>
-              <hr class="my-3">
+        <div class="text-center top-message">
+            <div class="my-5">
+                <h4>住宅メーカーのこだわりや特徴</h4>
             </div>
-          </div>
+            <div class="mx-auto my-5 top-message-subtitle">
+                <p>こだわりや特徴を見比べて、最適な依頼先を見つけましょう。</p>
+            </div>
         </div>
-      </div>
+        <div id="app">
+            <div class="pt-4">
+                <div class="col-10 col-md-8 col-lg-6 mx-auto">
+                    <input type="text" v-model="keyword" class="searchbox" placeholder="例）メーカー名など">
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-2 g-0 col-md-10 mx-auto py-3">
+                <div v-for="maker in filteredMakers" :key="maker.pk">
+                    <div class="card-container">
+                        <div class="mx-auto px-4 col card-col">
+                            <nuxt-link :to="`/detail/${maker.name_eng}`" class="my-3">
+                                <div class="maker-card p-2">
+                                    <div class="row">
+                                        <div class="col-5 maker-card-image">
+                                            <img v-bind:src="maker.image_url" v-bind:alt="maker.name" v-bind:title="maker.name" class="maker-card-image-top" >
+                                        </div>
+                                        <div class="col-7 d-flex align-items-center">
+                                            <p class="card-title ps-3">{{maker.name}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="card-body">
+                                            <p class="card-text maker-card-review-p" v-html="maker.ratetostr"></p>
+                                            <p class="card-text maker-card-review-p">{{ parseFloat(maker.get_rateavg).toFixed(1) }} | 口コミ：{{ maker.get_review_count }}件</p><br>
+                                            <p class="card-text maker-card-review-p">平均費用：{{ parseFloat(maker.get_expense_avg).toFixed(1) }}万円 | 費用明細：{{ maker.get_expense_count }}件</p><br>
+                                            <p class="card-text maker-card-review-p">平均坪数：{{ parseFloat(maker.get_landarea_avg).toFixed(1) }}坪</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </nuxt-link>
+                            <hr class="my-3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -71,15 +71,14 @@ export default {
     return {
       keyword: "",
       settings: {
+        "arrow": false,
         "dots": false,
         "infinite": true,
-        "slidesToShow": 1,
         "slidesToScroll": 1,
         "swipeToSlide": true,
         "autoplay": true,
         "speed": 1000,
-        "autoplaySpeed": 5000,
-        "pauseOnFocus": true,
+        "autoplaySpeed": 3000,
         "centerMode": true,
         "variableWidth": true,
       },
@@ -188,7 +187,7 @@ export default {
 
 
   /* iPad用 */
-  @media screen and (max-width:840px) { 
+  @media screen and (max-width:1024px) {
       .maker-card {
           height: 200px;
           background-color: #f5f5f5;
@@ -218,12 +217,28 @@ export default {
       .card-title {
           font-size: 13px;
       }
+
+      .carousel-container{
+        img {
+          height: 309px;
+          width: 500px;
+          max-width: 500px
+        }
+      }
   }
   /* スマホ用 */
-  @media screen and (max-width:480px) { 
+    @media screen and (max-width:480px) { 
+        .top-message {
+            &-subtitle{
+                p {
+                    font-size: 12px;
+                }
+            }
+        }
+
       .carousel-container{
        img.slickitem {
-        width: 100vw;
+        width: 100px;
         }
       }
 
@@ -255,6 +270,13 @@ export default {
 
       .card-title {
           font-size: 13px;
+      }
+      .carousel-container{
+        img {
+          height: 155px;
+          width: 250px;
+          max-width: 250px
+        }
       }
   }
 }
