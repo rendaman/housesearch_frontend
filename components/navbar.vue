@@ -8,13 +8,15 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarsExample04">    
             <ul class="navbar-nav mb-2 mb-md-0">
-              <li class="nav-item mx-auto">
+              <li class="nav-item">
                 <div v-if="$auth.loggedIn">
+                  <span>こんにちは{{ $auth.user }}さん</span>
                   <a href="" @click.prevent="$auth.logout()">ログアウト</a>
                 </div>
                 <div v-else>
                   <nuxt-link to="/login">ログイン</nuxt-link>
                   <nuxt-link to="/signup">会員登録（無料）</nuxt-link>
+                  <span>こんにちはゲストさん</span>
                 </div>
               </li>
             </ul>
@@ -50,6 +52,7 @@
 
   .nav-item {
     font-size: 14px;
+    float: right;
   }
 
   i.bi-house-door {

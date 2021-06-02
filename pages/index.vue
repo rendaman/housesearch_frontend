@@ -40,7 +40,7 @@
                                     <div class="row">
                                         <div class="card-body">
                                             <p class="card-text maker-card-review-p" v-html="maker.ratetostr"></p>
-                                            <p class="card-text maker-card-review-p">{{ parseFloat(maker.get_rateavg).toFixed(1) }} | 口コミ：{{ maker.get_review_count }}件</p><br>
+                                            <p class="card-text maker-card-review-p">{{ parseFloat(maker.get_rateavg).toFixed(2) }} | 口コミ：{{ maker.get_review_count }}件</p><br>
                                             <p class="card-text maker-card-review-p">平均費用：{{ parseFloat(maker.get_expense_avg).toFixed(1) }}万円 | 費用明細：{{ maker.get_expense_count }}件</p><br>
                                             <p class="card-text maker-card-review-p">平均坪数：{{ parseFloat(maker.get_landarea_avg).toFixed(1) }}坪</p>
                                         </div>
@@ -124,7 +124,7 @@ export default {
       width: 100%;
       padding-left: 2.5%;
       line-height: 2.0;
-      border-radius:25px;
+      border-radius: 25px;
       outline:0;
   }
 
@@ -135,7 +135,7 @@ export default {
   .maker-card {
     height: 200px;
     background-color: #fff;
-    transition: 0.5s;
+    transition: 0.3s;
  
     &:hover {
       background-color: #f5f5f5;

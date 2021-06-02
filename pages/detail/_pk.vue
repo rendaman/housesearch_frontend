@@ -2,6 +2,9 @@
     <div class="makerdetail mx-auto">
         <MakerBrand v-bind:maker="maker" />
         <NavNavBarOnDetail v-bind:maker="maker" class="fixed" />
+        <client-only>
+            <RateHeader v-bind:maker="maker" />
+        </client-only>
         <MakerTopSentence v-bind:maker="maker" />
         <table border="1">
             <tr>
@@ -49,9 +52,10 @@
 import MakerBrand from '~/components/molecules/maker-brand.vue'
 import NavNavBarOnDetail from '~/components/molecules/nav-navbarondetail'
 import MakerTopSentence from '~/components/atoms/maker-topsentence'
+import RateHeader from '~/components/organisms/rateheader'
 export default {
     components: {
-        MakerBrand, NavNavBarOnDetail, MakerTopSentence,
+        MakerBrand, NavNavBarOnDetail, MakerTopSentence, RateHeader
     },
     data () {
         return {

@@ -2,7 +2,9 @@
     <div class="review">
         <MakerBrand v-bind:maker="maker" />
         <NavNavBarOnDetail v-bind:maker="maker" class="fixed" />
-        <MakerTopSentence v-bind:maker="maker" />
+        <client-only>
+            <RateHeader v-bind:maker="maker" />
+        </client-only>
         <div v-for="review in reviews" :key="review.pk">
             <div class="card mb-3 mx-auto">
                 <div class="row g-0">
@@ -43,10 +45,10 @@
 <script>
 import MakerBrand from '~/components/molecules/maker-brand.vue'
 import NavNavBarOnDetail from '~/components/molecules/nav-navbarondetail'
-import MakerTopSentence from '~/components/atoms/maker-topsentence'
+import RateHeader from '~/components/organisms/rateheader'
 export default {
     components: {
-        MakerBrand, NavNavBarOnDetail, MakerTopSentence,
+        MakerBrand, NavNavBarOnDetail, RateHeader
     },
     async asyncData({ $axios, params }) {
         const url = 'api/reviews/?maker_name=' + `${params.pk}`

@@ -15,7 +15,6 @@
 @import "@/assets/css/mixin.scss";
 .maker-brand {
     margin-bottom: 10px;
-    border-bottom: 1px solid #BCBCBC;;
     overflow: hidden;
     &-container {
         display: flex;

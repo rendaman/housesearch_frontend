@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-navbarondetail">
+    <div class="nav-navbarondetail" v-bind:class="{topfix: isFixed}">
         <div class="nav-navbarondetail-container row">
             <nuxt-link :to="`/review/${maker.name_eng}`" class="col-3 nav-navbarondetail-container-btn" >
                 <NavButton>
@@ -27,6 +27,10 @@
 
 <style lang="scss" scoped>
 .nav-navbarondetail {
+    width: 100vw;
+    background-color: #eee;
+    box-shadow: inset 0px 10px 10px -10px rgba(0, 0, 0, .5);
+    -webkit-box-shadow: inset 0px 10px 10px -10px rgba(0, 0, 0, .5);
     height: 65px;
     overflow: hidden;
     &-container {
@@ -38,6 +42,12 @@
     }
 }
 
+.topfix {
+    transition: 0.25s;
+    background-color: #fff;
+    box-shadow: 0px 10px 10px -10px rgba(0,0,0,0.5);
+}
+
 </style>
 
 <script>
@@ -47,5 +57,27 @@ export default {
         NavButton,
     },
     props: ['maker'],
+    data () {
+        return {
+            isFixed: false
+        }
+    },
+    mounted () {
+        window.addEventListener('scroll', this.onScroll)
+    },
+    beforeDestroy () {
+        window.removeEventListener('scroll', this.onScroll)
+    },
+    methods: {
+        onScroll () {
+            const elem = document.getElementById('target')
+            const rect = elem.getBoundingClientRect().top;
+            if (rect <= 22){
+                this.isFixed = true;
+            } else {
+                this.isFixed = false;
+            }
+        }
+    }    
 }
 </script>

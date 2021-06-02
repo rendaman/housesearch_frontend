@@ -1,6 +1,10 @@
 const GAID = 'G-3WBC205G07'
 const GAcode = `window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', '${GAID}');`
 
+require('dotenv').config();
+const {API_SERVER} = process.env;
+
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'server',
@@ -79,6 +83,7 @@ export default {
   modules: [
     '@nuxtjs/axios',
     '@nuxtjs/auth',
+    '@nuxtjs/dotenv',
   ],
   proxy: {
     '/api/': 'http://localhost:8000',
@@ -88,24 +93,28 @@ export default {
     proxy: true,
   },
   auth: {
+    strategies: {
+      local: {
+        token: {
+          property: 'token',
+          type: 'JWT'
+        },
+        endpoints: {
+          login: { url: 'http://localhost:8000/auth/', method: 'post'},
+          logout: false,
+          user: { url: 'http://localhost:8000/user/', method: 'get', propertyName: 'username'}
+        },
+        tokenType: 'JWT'
+      }
+    },
     redirect: {
       login: '/login', 
       logout: '/',
       callback: false,
       home: '/'
     },
-    strategies: {
-      local: {
-        endpoints: {
-          login: { url: 'http://localhost:8000/auth/', method: 'post', propertyName: 'token'},
-          logout: false,
-          user: { url: 'http://localhost:8000/api/user/', method: 'get', propertyName: 'username' }
-        }
-      }
-    }  
+    watchLoggedIn: true
   },  
-
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     babel: {
@@ -113,5 +122,9 @@ export default {
         options.loose = true;
       }
     }
-  }
+  },
+  // Environment Value
+  env: {
+    API_SERVER
+  },
 }

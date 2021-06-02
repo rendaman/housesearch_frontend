@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-button" v-bind:class="{topfix: isFixed}"> 
+    <div class="nav-button"> 
         <div class="nav-button-container">
             <button class="nav-button-container-button" id="target">
                 <slot />
@@ -11,15 +11,13 @@
 <style lang="scss" scoped>
 @import "@/assets/css/mixin.scss";
 .nav-button {
-    background-color: #eee;
-    box-shadow: inset 0px 10px 10px -10px rgba(0, 0, 0, .5);
     padding-top: 20px;
     padding-bottom: 20px;
     &-container {
         text-align: center;
         border-right: 1px solid #999;
         transition: 0.5s;
-        @include sp{
+        @include sp {
             border-right: hidden;
         }
         &-button {
@@ -40,6 +38,9 @@
             color: #333;
             transition: opacity .2s ease;
             overflow: hidden;
+            @include sp {
+                font-weight: 300;
+            }
             i {
                 color: $maincolor;
             }
@@ -52,35 +53,8 @@
         }
     }
 }
-.topfix {
-    transition: 0.25s;
-    background-color: #fff;
-}
+
 </style>
 
 <script>
-export default {
-    data () {
-        return {
-            isFixed: false
-        }
-    },
-    mounted () {
-        window.addEventListener('scroll', this.onScroll)
-    },
-    beforeDestroy () {
-        window.removeEventListener('scroll', this.onScroll)
-    },
-    methods: {
-        onScroll () {
-            const elem = document.getElementById('target')
-            const rect = elem.getBoundingClientRect().top;
-            if (rect == 21){
-                this.isFixed = true;
-            } else {
-                this.isFixed = false;
-            }
-        }
-    }
-}
 </script>
