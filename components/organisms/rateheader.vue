@@ -3,9 +3,7 @@
         <p class="rateheader-review mx-5">クチコミ({{ maker.get_review_count }}件)</p>
         <div class="row">
             <div class="col-3">
-                <client-only>
-                    <TotalRate v-bind:maker="maker" />
-                </client-only>
+                <TotalRate v-bind:maker="maker" />
             </div>
             <div class="col-9 row">
                 <div class="col-4">

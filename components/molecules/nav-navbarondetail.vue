@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-navbarondetail" v-bind:class="{topfix: isFixed}">
+    <div class="nav-navbarondetail" v-bind:class="{topfix: isFixed}" id="target">
         <div class="nav-navbarondetail-container row">
             <nuxt-link :to="`/review/${maker.name_eng}`" class="col-3 nav-navbarondetail-container-btn" >
                 <NavButton>
@@ -45,7 +45,7 @@
 .topfix {
     transition: 0.25s;
     background-color: #fff;
-    box-shadow: 0px 10px 10px -10px rgba(0,0,0,0.5);
+    box-shadow: 0px 5px 10px 2px rgba(0,0,0,0.5);
 }
 
 </style>
@@ -72,7 +72,7 @@ export default {
         onScroll () {
             const elem = document.getElementById('target')
             const rect = elem.getBoundingClientRect().top;
-            if (rect <= 22){
+            if (rect == 0){
                 this.isFixed = true;
             } else {
                 this.isFixed = false;

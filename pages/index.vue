@@ -1,13 +1,13 @@
 <template>
     <div class="index">
         <div class="carousel-container">
-            <VueSlickCarousel v-bind="settings">
+            <vue-slick-carousel v-bind="settings">
                 <img src='@/assets/images/carousel1.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
                 <img src='@/assets/images/carousel2.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
                 <img src='@/assets/images/carousel3.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
                 <img src='@/assets/images/carousel4.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
                 <img src='@/assets/images/carousel5.jpg' alt="HOUSE SEACRH" title="HOUSE SEACRH">
-            </VueSlickCarousel>
+            </vue-slick-carousel>
         </div>
         <div class="text-center top-message">
             <div class="my-5">
@@ -57,11 +57,7 @@
 </template>
 
 <script>
-import VueSlickCarousel from 'vue-slick-carousel'
-import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 export default {
-  components: { VueSlickCarousel },
   async asyncData({ $axios }) {
     const url = 'api/makers/'
     const makers = await $axios.$get(url)

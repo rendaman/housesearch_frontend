@@ -1,7 +1,7 @@
 <template>
     <div class="nav-button"> 
         <div class="nav-button-container">
-            <button class="nav-button-container-button" id="target">
+            <button class="nav-button-container-button">
                 <slot />
             </button>
         </div>

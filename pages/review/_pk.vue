@@ -2,9 +2,7 @@
     <div class="review">
         <MakerBrand v-bind:maker="maker" />
         <NavNavBarOnDetail v-bind:maker="maker" class="fixed" />
-        <client-only>
-            <RateHeader v-bind:maker="maker" />
-        </client-only>
+        <RateHeader v-bind:maker="maker" />
         <div v-for="review in reviews" :key="review.pk">
             <div class="card mb-3 mx-auto">
                 <div class="row g-0">
@@ -47,6 +45,13 @@ import MakerBrand from '~/components/molecules/maker-brand.vue'
 import NavNavBarOnDetail from '~/components/molecules/nav-navbarondetail'
 import RateHeader from '~/components/organisms/rateheader'
 export default {
+    data () {
+        return {
+            maker: {
+                get_rateavg: 0,
+            },
+        }
+    },
     components: {
         MakerBrand, NavNavBarOnDetail, RateHeader
     },

@@ -5,14 +5,14 @@
             <p class="totalrate-content-value">{{ parseFloat(maker.get_rateavg).toFixed(2) }}</p>
             <div class="totalrate-content-star">
                 <client-only>
-                    <VueStarRating v-model="maker.get_rateavg"
-                                    v-bind:increment="0.5"
-                                    v-bind:max-rating="5"
-                                    inactive-color="#ccc"
-                                    active-color="#feca2f"
-                                    v-bind:read-only=true
-                                    v-bind:show-rating=false
-                                    v-bind:star-size="30"
+                    <star-rating v-model="maker.get_rateavg"
+                                        :increment="0.5"
+                                        :max-rating="5"
+                                        inactive-color="#ccc"
+                                        active-color="#feca2f"
+                                        :read-only=true
+                                        :show-rating=false
+                                        :star-size="30"
                     />
                 </client-only>
             </div>
@@ -40,9 +40,7 @@
 </style>
 
 <script>
-import VueStarRating from 'vue-star-rating'
 export default {
-    components: {VueStarRating},
     props: ['maker'],
 }
 </script>
