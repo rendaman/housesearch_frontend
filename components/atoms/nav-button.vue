@@ -1,6 +1,6 @@
 <template>
     <div class="nav-button"> 
-        <div class="nav-button-container">
+        <div class="nav-button-container" v-bind:class="{isRight: isRightFlag}">
             <button class="nav-button-container-button">
                 <slot />
             </button>
@@ -53,8 +53,14 @@
         }
     }
 }
+.isRight {
+    border-right: none;
+}
 
 </style>
 
 <script>
+export default {
+    props: ['isRightFlag'],
+}
 </script>

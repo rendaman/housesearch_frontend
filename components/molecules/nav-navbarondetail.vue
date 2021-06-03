@@ -1,26 +1,30 @@
 <template>
     <div class="nav-navbarondetail" v-bind:class="{topfix: isFixed}" id="target">
         <div class="nav-navbarondetail-container row">
-            <nuxt-link :to="`/review/${maker.name_eng}`" class="col-3 nav-navbarondetail-container-btn" >
-                <NavButton>
+            <div class="col-2">
+            </div>
+            <nuxt-link :to="`/review/${maker.name_eng}`" class="col-2 nav-navbarondetail-container-btn" >
+                <NavButton :isRightFlag=false>
                     <i class="bi bi-chat-left-text"></i>  口コミ
                 </NavButton>
             </nuxt-link>
-            <nuxt-link :to="`/review/${maker.name_eng}`" class="col-3 nav-navbarondetail-container-btn" >
-                <NavButton>
+            <nuxt-link :to="`/review/${maker.name_eng}`" class="col-2 nav-navbarondetail-container-btn" >
+                <NavButton :isRightFlag=false>
                     <i class="bi bi-pencil-square"></i> 口コミ投稿
                 </NavButton>
             </nuxt-link>
-            <nuxt-link :to="`/expense/${maker.name_eng}`" class="col-3 nav-navbarondetail-container-btn" >
-                <NavButton>
+            <nuxt-link :to="`/expense/${maker.name_eng}`" class="col-2 nav-navbarondetail-container-btn" >
+                <NavButton :isRightFlag=false>
                     <i class="bi bi-file-text"></i> 見積明細
                 </NavButton>
             </nuxt-link>
-            <nuxt-link :to="`/review/${maker.name_eng}`" class="col-3 nav-navbarondetail-container-btn" >
-                <NavButton>
+            <nuxt-link :to="`/review/${maker.name_eng}`" class="col-2 nav-navbarondetail-container-btn" >
+                <NavButton :isRightFlag=true>
                     <i class="bi bi-pencil-square"></i> 明細投稿
                 </NavButton>
             </nuxt-link>
+            <div class="col-2">
+            </div>
         </div>
     </div>
 </template>
@@ -72,7 +76,7 @@ export default {
         onScroll () {
             const elem = document.getElementById('target')
             const rect = elem.getBoundingClientRect().top;
-            if (rect == 0){
+            if (rect <= 5){
                 this.isFixed = true;
             } else {
                 this.isFixed = false;

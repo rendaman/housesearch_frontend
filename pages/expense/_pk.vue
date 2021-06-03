@@ -2,7 +2,6 @@
     <div class="review">
         <MakerBrand v-bind:maker="maker" />
         <NavNavBarOnDetail v-bind:maker="maker" class="fixed" />
-        <MakerTopSentence v-bind:maker="maker" />
         <div v-for="expense in expenses" :key="expense.pk">
             <div class="mb-3">
                 <div class="row g-0">
@@ -34,10 +33,9 @@
 <script>
 import MakerBrand from '~/components/molecules/maker-brand.vue'
 import NavNavBarOnDetail from '~/components/molecules/nav-navbarondetail'
-import MakerTopSentence from '~/components/atoms/maker-topsentence'
 export default {
     components: {
-        MakerBrand, NavNavBarOnDetail, MakerTopSentence,
+        MakerBrand, NavNavBarOnDetail,
     },
     async asyncData({ $axios, params }) {
         const url = 'api/expense/?maker_name=' + `${params.pk}`
