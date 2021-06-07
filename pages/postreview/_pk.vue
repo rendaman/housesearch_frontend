@@ -2,15 +2,16 @@
     <div class="postreview">
         <MakerBrand :maker="maker" />
         <NavNavBarOnDetail :maker="maker" class="fixed" />
+        <RevPostJoin class="mx-auto py-4" />
     </div>
 </template>
 
 <script>
 import MakerBrand from '~/components/molecules/maker-brand.vue'
 import NavNavBarOnDetail from '~/components/molecules/nav-navbarondetail'
-import RateHeader from '~/components/organisms/rateheader'
-import ReviewCard from '~/components/organisms/reviewcard'
+import RevPostJoin from '~/components/organisms/revpostjoin'
 export default {
+    middleware: 'auth',
     data () {
         return {
             maker: {
@@ -19,7 +20,7 @@ export default {
         }
     },
     components: {
-        MakerBrand, NavNavBarOnDetail, RateHeader, ReviewCard
+        MakerBrand, NavNavBarOnDetail, RevPostJoin
     },
     async asyncData({ $axios, params }) {
         const url = 'api/reviews/?maker_name=' + `${params.pk}`

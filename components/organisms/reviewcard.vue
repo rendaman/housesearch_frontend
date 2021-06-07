@@ -1,17 +1,19 @@
 <template>
-    <div class="reviewcard mx-auto pt-4 pb-4">
+    <div class="reviewcard mx-auto py-4">
         <div class="">
             <i class="bi bi-person-fill"></i>
             <span class="reviewcard-author">{{review.author}}さん</span>
-            <star-rating v-model="review.avgrate"
-                                :increment="0.5"
-                                :max-rating="5"
-                                inactive-color="#ccc"
-                                active-color="#feca2f"
-                                :read-only=true
-                                :show-rating=false
-                                :star-size="17"
-            />
+            <client-only>
+                <star-rating v-model="review.get_rateavg"
+                                    :increment="0.5"
+                                    :max-rating="5"
+                                    inactive-color="#ccc"
+                                    active-color="#feca2f"
+                                    :read-only=true
+                                    :show-rating=false
+                                    :star-size="17"
+                />
+            </client-only>
             <span class="reviewcard-rate">{{review.avgrate}}</span>
             <span class="reviewcard-status">{{review.status}}</span>
         </div>
@@ -69,7 +71,7 @@
 <style lang="scss">
 @import "@/assets/css/mixin.scss";
 .reviewcard {
-    width: 840px;
+    max-width: 840px;
     font-size: 14px;
     &-status {
         float: right;
@@ -105,12 +107,14 @@
 import Comments from '~/components/atoms/comments'
 export default {
     components: {Comments},
-    data () {
-        return {
-            review: '',
+    props: {
+        review: {
+            avgrate: {
+                type: Number,
+                default: 0.00,
+            }
         }
-    },
-    props: ['review'],
+    }
 }
 </script>
 
