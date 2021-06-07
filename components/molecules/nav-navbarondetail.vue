@@ -8,7 +8,7 @@
                     <i class="bi bi-chat-left-text"></i>  口コミ
                 </NavButton>
             </nuxt-link>
-            <nuxt-link :to="`/review/${maker.name_eng}`" class="col-2 nav-navbarondetail-container-btn" >
+            <nuxt-link :to="`/postreview/${maker.name_eng}`" class="col-2 nav-navbarondetail-container-btn" >
                 <NavButton :isRightFlag=false>
                     <i class="bi bi-pencil-square"></i> 口コミ投稿
                 </NavButton>

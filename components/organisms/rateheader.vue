@@ -17,18 +17,18 @@
                     </ReviewPoint>
                     <ReviewPoint>
                         <template v-slot:what>
-                            間取り
-                        </template>
-                        <template v-slot:how>
-                            {{ parseFloat(maker.get_layoutavg).toFixed(2) }}
-                        </template>
-                    </ReviewPoint>
-                    <ReviewPoint>
-                        <template v-slot:what>
                             デザイン
                         </template>
                         <template v-slot:how>
                             {{ parseFloat(maker.get_designavg).toFixed(2) }}
+                        </template>
+                    </ReviewPoint>
+                    <ReviewPoint>
+                        <template v-slot:what>
+                            間取り
+                        </template>
+                        <template v-slot:how>
+                            {{ parseFloat(maker.get_layoutavg).toFixed(2) }}
                         </template>
                     </ReviewPoint>
                 </div>

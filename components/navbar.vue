@@ -10,13 +10,12 @@
             <ul class="navbar-nav mb-2 mb-md-0">
               <li class="nav-item">
                 <div v-if="$auth.loggedIn">
-                  <span>こんにちは{{ $auth.user }}さん</span>
-                  <a href="" @click.prevent="$auth.logout()">ログアウト</a>
+                  <span class="pe-2 navbtn">{{ $auth.user }}さん</span>
+                  <a href="" @click.prevent="$auth.logout()" class="pe-2 logout">(ログアウトはこちら)</a>
                 </div>
                 <div v-else>
-                  <nuxt-link to="/login">ログイン</nuxt-link>
-                  <nuxt-link to="/signup">会員登録（無料）</nuxt-link>
-                  <span>こんにちはゲストさん</span>
+                  <nuxt-link to="/login" class="pe-2 navbtn">ログイン</nuxt-link>
+                  <nuxt-link to="/signup" class="pe-2 navbtn">会員登録</nuxt-link>
                 </div>
               </li>
             </ul>
@@ -28,7 +27,29 @@
 
 <script></script>
 
-<style lang="scss">
+<style lang="scss" >
+@import "@/assets/css/mixin.scss";
+.navbar-nav {
+  width: 100%;
+  display: block;
+}
+
+span.navbtn {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+a.logout {
+  font-size: 12px;
+  color: $subcolor;
+}
+
+a.navbtn {
+  color: $subcolor;
+  font-size: 14px;
+  font-weight: 500;
+}
+
 .navbarcomp {
   footer.container {
     font-family: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', sans-serif;

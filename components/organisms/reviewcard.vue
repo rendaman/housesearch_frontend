@@ -1,5 +1,5 @@
 <template>
-    <div class="reviewcard mx-auto pb-5">
+    <div class="reviewcard mx-auto pt-4 pb-4">
         <div class="">
             <i class="bi bi-person-fill"></i>
             <span class="reviewcard-author">{{review.author}}さん</span>
@@ -31,35 +31,35 @@
             <span class="reviewcard-key">営業</span>
             <span class="reviewcard-value">{{ parseFloat(review.salesrate).toFixed(1) }}</span>
         </div>
-        <div class="">
+        <div class="reviewcard-comment">
             <Comments>
                 <div>
-                    <span class="reviewcard-key">費用：</span>
-                    <span class="reviewcard-comment">{{review.costcomment}}</span>
+                    <span class="reviewcard-comment-key">費用：</span>
+                    <span class="reviewcard-comment-comment">{{review.costcomment}}</span>
                 </div>
                 <div>
-                    <span class="reviewcard-key">デザイン：</span>
-                    <span class="reviewcard-comment">{{review.designcomment}}</span>
+                    <span class="reviewcard-comment-key">デザイン：</span>
+                    <span class="reviewcard-comment-comment">{{review.designcomment}}</span>
                 </div>
                 <div>
-                    <span class="reviewcard-key">間取り：</span>
-                    <span class="reviewcard-comment">{{review.layoutcomment}}</span>
+                    <span class="reviewcard-comment-key">間取り：</span>
+                    <span class="reviewcard-comment-comment">{{review.layoutcomment}}</span>
                 </div>
                 <div>
-                    <span class="reviewcard-key">住宅の性能：</span>
-                    <span class="reviewcard-comment">{{review.speccomment}}</span>
+                    <span class="reviewcard-comment-key">住宅の性能：</span>
+                    <span class="reviewcard-comment-comment">{{review.speccomment}}</span>
                 </div>
                 <div>
-                    <span class="reviewcard-key">付帯設備：</span>
-                    <span class="reviewcard-comment">{{review.attachcomment}}</span>
+                    <span class="reviewcard-comment-key">付帯設備：</span>
+                    <span class="reviewcard-comment-comment">{{review.attachcomment}}</span>
                 </div>
                 <div>
-                    <span class="reviewcard-key">保証：</span>
-                    <span class="reviewcard-comment">{{review.guaranteecomment}}</span>
+                    <span class="reviewcard-comment-key">保証：</span>
+                    <span class="reviewcard-comment-comment">{{review.guaranteecomment}}</span>
                 </div>
                 <div>
-                    <span class="reviewcard-key">営業：</span>
-                    <span class="reviewcard-comment">{{review.salescomment}}</span>
+                    <span class="reviewcard-comment-key">営業：</span>
+                    <span class="reviewcard-comment-comment">{{review.salescomment}}</span>
                 </div>
             </Comments>
         </div>
@@ -81,7 +81,12 @@
         border-radius: 2px;
     }
     &-comment {
-        word-wrap: break-word;
+        &-key {
+            font-weight: 700;
+        }
+        &-comment {
+            word-wrap: break-word;
+        }
     }
     &-rate {
         font-weight: 700;

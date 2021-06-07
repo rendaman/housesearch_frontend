@@ -16,12 +16,6 @@
                             <p class="card-text">値上がりポイント：{{expense.costupcomment}}</p>
                             <p class="card-text">値下がりポイント：{{expense.costdowncomment}}</p>
                             <img v-bind:src="expense.image_url" v-bind:alt="maker.name" v-bind:title="maker.name">
-              <!--
-              {% if item.author == user.username%}
-              <form method="POST" action="{% url 'deletereview' object.pk %}">{% csrf_token %}
-                <button class="btn btn-outline-primary" type="submit">削除する</button>
-              </form>
-              {% endif %}-->
                         </div>
                     </div>
                 </div>
