@@ -86,10 +86,10 @@ export default {
     '@nuxtjs/dotenv',
   ],
   proxy: {
-    //'/api/': 'https://rendaman.net',
-    //'/auth/': 'https://rendaman.net',
-    '/api/': 'http://localhost:8000',
-    '/auth/': 'http://localhost:8000',
+    '/api/': 'https://rendaman.net',
+    '/auth/': 'https://rendaman.net',
+    //'/api/': 'http://localhost:8000',
+    //'/auth/': 'http://localhost:8000',
   },
   axios: {
     proxy: true,
@@ -102,9 +102,11 @@ export default {
           type: 'JWT'
         },
         endpoints: {
-          login: { url: 'http://localhost:8000/auth/', method: 'post'},
+          //login: { url: 'http://localhost:8000/auth/', method: 'post'},
+          login: { url: 'https://rendaman.net/auth/', method: 'post'},
           logout: false,
-          user: { url: 'http://localhost:8000/user/', method: 'get', propertyName: 'username'}
+          //user: { url: 'http://localhost:8000/user/', method: 'get', propertyName: 'username'}
+          user: { url: 'https://rendaman.net/user/', method: 'get', propertyName: 'username'}
         },
         tokenType: 'JWT'
       }
