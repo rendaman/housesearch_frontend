@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-navbarondetail" v-bind:class="{topfix: isFixed}" id="target">
+    <div class="nav-navbarondetail" :class="{topfix: isFixed}" id="target">
         <div class="nav-navbarondetail-container row">
             <div class="col-2">
             </div>

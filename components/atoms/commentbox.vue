@@ -1,6 +1,6 @@
 <template>
     <div class="commentbox">
-        <textarea required placeholder="この場所での自分の体験や感想を共有しましょう"></textarea>
+        <textarea v-model="inputText" required placeholder="この場所での自分の体験や感想を共有しましょう" @change="onChange"></textarea>
     </div>
 </template>
 
@@ -21,5 +21,17 @@
 </style>
 
 <script>
+export default {
+    data () {
+        return {
+            inputText: "",
+        }
+    },
+    methods: {
+        onChange(event) {
+            this.$emit('recvFunc', this.inputText);
+        },
+    },
+}
 </script>
 

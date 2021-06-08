@@ -3,10 +3,10 @@
         <main class="form-signin">
             <form class="form-signin" method="" action=''>
                 <h1 class="h5 mb-3 fw-normal">ログインはこちらから</h1>
-                <input type="text" class="form-control" v-model='username' placeholder="ユーザ名" required autofocus>
-                <input type="password" class="form-control" v-model='password' placeholder="パスワード" required>
-                <div class="w-100 btn btn-lg btn-secondary mb-3" @click="loginWithAuthModule">ログインする</div>
-                <nuxt-link to="/signup" class="w-100 btn btn-lg btn-primary">会員登録（無料）</nuxt-link>
+                <input type="text" class="form-control" v-model='username' placeholder="ユーザ名" required autofocus tabindex="1">
+                <input type="password" class="form-control" v-model='password' placeholder="パスワード" required tabindex="2">
+                <a class="w-100 btn btn-lg btn-secondary mb-3" @click="loginWithAuthModule" tabindex="3" href="javascript:void(0)">ログインする</a>
+                <nuxt-link to="/signup" class="w-100 btn btn-lg btn-primary" tabindex="4">会員登録（無料）</nuxt-link>
             </form>
         </main>
     </div>

@@ -11,7 +11,7 @@
               <li class="nav-item">
                 <div v-if="$auth.loggedIn">
                   <span class="pe-2 navbtn">{{ $auth.user }}さん</span>
-                  <a href="" @click.prevent="$auth.logout()" class="pe-2 logout">(ログアウトはこちら)</a>
+                  <a href="javascript:void(0)" @click="$auth.logout()" class="pe-2 logout">(ログアウトはこちら)</a>
                 </div>
                 <div v-else>
                   <nuxt-link to="/login" class="pe-2 navbtn">ログイン</nuxt-link>

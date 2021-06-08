@@ -2,7 +2,7 @@
     <div class="postreview">
         <MakerBrand :maker="maker" />
         <NavNavBarOnDetail :maker="maker" class="fixed" />
-        <RevPostJoin class="mx-auto py-4" />
+        <RevPostJoin :maker="maker" class="mx-auto py-4" />
     </div>
 </template>
 

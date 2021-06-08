@@ -2,13 +2,18 @@
     <div class="revpost">
         <div class="revpost-titleandstar py-1">
             <Require />
-            <RevH3 :revkey="revkey" class="px-3" />
+            <RevH3  class="px-3"
+                    :revkey="revkey.namekana" 
+            >
+            </RevH3>
         </div>
         <div class="revpost-star py-1">
-            <RevStar />
+            <RevStar    @recvFunc="updateRate">
+            </RevStar>
         </div>
         <div class="revost-comment py-1">
-            <CommentBox />
+            <CommentBox     @recvFunc="updateComment">
+            </CommentBox>
         </div>
     </div>
 </template>
@@ -37,7 +42,19 @@ import RevStar from '~/components/atoms/revstar'
 
 export default {
     components: {CommentBox, Require, RevH3, RevStar},
-    props: ['revkey'],
+    props: ['revkey', 'resbody'],
+    methods: {
+        updateComment(comment) {
+            var valname = this.revkey.comment
+            eval("this.resbody." + valname + "= comment");
+            this.$emit('commentUpdate', this.resbody)
+        },
+        updateRate(rate) {
+            var valname = this.revkey.rate
+            eval("this.resbody." + valname + "= rate");
+            this.$emit('rateUpdate', this.resbody)
+        }
+    }
 }
 </script>
 

@@ -116,13 +116,18 @@ export default {
       border-bottom: solid 1px #BCBCBC;
   }
   
-  input.searchbox {
-      width: 100%;
-      padding-left: 2.5%;
-      line-height: 2.0;
-      border-radius: 25px;
-      outline:0;
-  }
+    input.searchbox {
+            width: 100%;
+            padding-left: 2.5%;
+            line-height: 2.0;
+            border: #CCC 1px solid;
+            border-radius: 25px;
+            outline:0;
+            transition: .3s;
+            &:hover {
+                filter:drop-shadow(1px 3px 5px rgba(0, 0, 0, 0.2));
+            }
+    }
 
   .card-col {
     max-width: 720px;

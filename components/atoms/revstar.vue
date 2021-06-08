@@ -7,6 +7,7 @@
                             active-color="#feca2f"
                             :show-rating=true
                             :star-size="25"
+                            @rating-selected="onChange"
         />
     </div>
 </template>
@@ -25,7 +26,12 @@ export default {
         return {
             rate: 0,
         }
-    }
+    },
+    methods: {
+        onChange(event) {
+            this.$emit('recvFunc', this.rate);
+        },
+    },
 }
 </script>
 
