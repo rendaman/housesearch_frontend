@@ -3,7 +3,7 @@ const REVIEW_URL = 'api/v1/reviews/'
 const REVIEW_URL_FILTERED_BY_MAKER = 'api/v1/reviews/?maker_name='
 const EXPENSE_URL = 'api/v1/expense/'
 const EXPENSE_URL_FILTERED_BY_MAKER = 'api/v1/expense/?maker_name='
-const ISPOST_URL = 'api/isposted/'
+const ISPOST_URL = 'api/v1/isposted/'
 
 export default (context, inject) => {
     inject('MAKER_URL', MAKER_URL)
