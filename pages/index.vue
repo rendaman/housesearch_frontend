@@ -59,7 +59,7 @@
 <script>
 export default {
   async asyncData({ $axios }) {
-    const url = 'api/makers/'
+    const url = 'api/v1/makers/'
     const makers = await $axios.$get(url)
     return {makers}
   },
@@ -184,7 +184,12 @@ export default {
       font-size: large; 
     }
   }
-
+.slider {
+    display: none;
+}
+.slider.slick-initialized {
+    display: block;
+}
 
 
   /* iPad用 */

@@ -26,9 +26,9 @@ export default {
         MakerBrand, NavNavBarOnDetail, RateHeader, ReviewCard
     },
     async asyncData({ $axios, params }) {
-        const url = 'api/reviews/?maker_name=' + `${params.pk}`
+        const url = 'api/v1/reviews/?maker_name=' + `${params.pk}`
         const reviews = await $axios.$get(url)
-        const url2 = 'api/makers/' + `${params.pk}`  + '/'
+        const url2 = 'api/v1/makers/' + `${params.pk}`  + '/'
         const maker = await $axios.$get(url2)
         return {reviews,maker}
     },

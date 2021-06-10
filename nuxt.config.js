@@ -106,7 +106,7 @@ export default {
           login: { url: 'https://rendaman.net/auth/', method: 'post'},
           logout: false,
           //user: { url: 'http://localhost:8000/user/', method: 'get', propertyName: 'username'}
-          user: { url: 'https://rendaman.net/user/', method: 'get', propertyName: 'username'}
+          user: { url: 'https://rendaman.net/api/user/', method: 'get', propertyName: 'username'}
         },
         tokenType: 'JWT'
       }

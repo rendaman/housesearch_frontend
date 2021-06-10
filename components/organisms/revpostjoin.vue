@@ -101,7 +101,7 @@ export default {
     components: {
         RevPost, GeneralButton, SelectBox
     },
-    props:['maker'],
+    props:['maker', 'isposted'],
     methods: {
         Stared:function (resbody) {
             this.resbody = resbody
@@ -121,12 +121,13 @@ export default {
             this.submit()
         },
         submit: async function () {
-            console.log("submitting...")
             const url = 'api/reviews/'
             const res = await this.$axios.$post(url, this.resbody)
-            console.log(res)
         }
     },
+    mounted() {
+        this.title="arunde"
+    }
 }
 </script>
 

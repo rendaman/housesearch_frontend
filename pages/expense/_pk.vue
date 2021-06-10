@@ -32,9 +32,9 @@ export default {
         MakerBrand, NavNavBarOnDetail,
     },
     async asyncData({ $axios, params }) {
-        const url = 'api/expense/?maker_name=' + `${params.pk}`
+        const url = 'api/v1/expense/?maker_name=' + `${params.pk}`
         const expenses = await $axios.$get(url)
-        const url2 = 'api/makers/' + `${params.pk}`  + '/'
+        const url2 = 'api/v1/makers/' + `${params.pk}`  + '/'
         const maker = await $axios.$get(url2)
         return {expenses,maker}
     },
