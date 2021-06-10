@@ -58,9 +58,8 @@
 
 <script>
 export default {
-  async asyncData({ $axios }) {
-    const url = 'api/v1/makers/'
-    const makers = await $axios.$get(url)
+  async asyncData({ $axios, $MAKER_URL }) {
+    const makers = await $axios.$get($MAKER_URL)
     return {makers}
   },
   data () {

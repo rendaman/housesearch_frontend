@@ -42,9 +42,8 @@ export default {
             maker: '',
         }
     },
-    async asyncData({ $axios, params }) {
-        const url = 'api/v1/makers/' + `${params.pk}`  + '/'
-        const maker = await $axios.$get(url)
+    async asyncData({ $axios, params, $MAKER_URL }) {
+        const maker = await $axios.$get($MAKER_URL + `${params.pk}`  + '/')
         return {maker}
     },
     }

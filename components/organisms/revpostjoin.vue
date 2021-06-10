@@ -74,7 +74,7 @@ export default {
                 },
             } ,
             statuskeys: ["見積中", "完成"],
-            title: "投稿",
+            title: "",
             pholder: "現在のご状況を教えてください",
             resbody: {
                 author:"",
@@ -121,12 +121,21 @@ export default {
             this.submit()
         },
         submit: async function () {
-            const url = 'api/reviews/'
-            const res = await this.$axios.$post(url, this.resbody)
+            const response = await this.$axios.$post(this.$REVIEW_URL, this.resbody)
+                .then(function (response, redirect){
+                    redirect('review/' + response.maker_name)
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
         }
     },
     mounted() {
-        this.title="arunde"
+        if (this.isposted){
+            this.title="更新"
+        } else {
+            this.title="投稿"
+        }
     }
 }
 </script>

@@ -43,8 +43,6 @@ export default {
             this.validation();
         },
         validation() {
-            console.log("valid start...")
-            console.log("length=" + this.inputText.length)
             if (this.inputText.length == 0) {
                 this.invalid = true
             } else {

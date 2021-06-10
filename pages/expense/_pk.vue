@@ -31,11 +31,9 @@ export default {
     components: {
         MakerBrand, NavNavBarOnDetail,
     },
-    async asyncData({ $axios, params }) {
-        const url = 'api/v1/expense/?maker_name=' + `${params.pk}`
-        const expenses = await $axios.$get(url)
-        const url2 = 'api/v1/makers/' + `${params.pk}`  + '/'
-        const maker = await $axios.$get(url2)
+    async asyncData({ $axios, params, $MAKER_URL, $EXPENSE_URL_FILTERED_BY_MAKER }) {
+        const expenses = await $axios.$get($EXPENSE_URL_FILTERED_BY_MAKER + `${params.pk}`)
+        const maker = await $axios.$get($MAKER_URL + `${params.pk}`  + '/')
         return {expenses,maker}
     },
 }

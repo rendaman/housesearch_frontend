@@ -68,7 +68,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [{ src: '~/plugins/VueStarRating.js', mode: 'client' },
-            { src: '~/plugins/VueSlickCarousel.js'}],
+            { src: '~/plugins/VueSlickCarousel.js'},
+            { src: '~/plugins/urls.js'}],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -88,8 +89,6 @@ export default {
   proxy: {
     '/api/': 'https://rendaman.net',
     '/auth/': 'https://rendaman.net',
-    //'/api/': 'http://localhost:8000',
-    //'/auth/': 'http://localhost:8000',
   },
   axios: {
     proxy: true,
@@ -102,10 +101,8 @@ export default {
           type: 'JWT'
         },
         endpoints: {
-          //login: { url: 'http://localhost:8000/auth/', method: 'post'},
           login: { url: 'https://rendaman.net/auth/', method: 'post'},
           logout: false,
-          //user: { url: 'http://localhost:8000/user/', method: 'get', propertyName: 'username'}
           user: { url: 'https://rendaman.net/api/user/', method: 'get', propertyName: 'username'}
         },
         tokenType: 'JWT'
