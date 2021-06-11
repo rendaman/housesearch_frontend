@@ -18,7 +18,7 @@ export default {
     async asyncData({ $axios, params, $REVIEW_URL_FILTERED_BY_MAKER, $MAKER_URL, $ISPOST_URL }) {
         const reviews = await $axios.$get($REVIEW_URL_FILTERED_BY_MAKER + `${params.pk}`)
         const maker = await $axios.$get($MAKER_URL + `${params.pk}`  + '/')
-        const isposted = await $axios.$get($ISPOST_URL)
+        const isposted = await $axios.$get($ISPOST_URL + maker.name_eng + '/')
         return {reviews, maker, isposted}
     },
 }

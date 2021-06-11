@@ -122,19 +122,19 @@ export default {
         },
         submit: async function () {
             const response = await this.$axios.$post(this.$REVIEW_URL, this.resbody)
-                .then(function (response, redirect){
-                    redirect('review/' + response.maker_name)
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
+                .then(
+                    response => this.$router.push('/review/' + response.maker_name)
+                )
+                .catch(
+                    error => console.log(error)
+                )
         }
     },
     mounted() {
-        if (this.isposted){
-            this.title="更新"
-        } else {
+        if (this.isposted.RevPosted == ""){
             this.title="投稿"
+        } else {
+            this.title="更新"
         }
     }
 }

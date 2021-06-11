@@ -32,6 +32,7 @@
             <span class="reviewcard-value">{{ parseFloat(review.guaranteerate).toFixed(1) }}</span>
             <span class="reviewcard-key">営業</span>
             <span class="reviewcard-value">{{ parseFloat(review.salesrate).toFixed(1) }}</span>
+            <span class="reviewcard-date">{{review.create_date}}</span>
         </div>
         <div class="reviewcard-comment">
             <Comments>
@@ -81,6 +82,10 @@
         background: #999;
         padding: 3px 5px;
         border-radius: 2px;
+    }
+    &-date {
+        float:right;
+        color: #999;
     }
     &-comment {
         &-key {
