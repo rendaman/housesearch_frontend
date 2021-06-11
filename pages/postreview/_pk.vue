@@ -2,7 +2,7 @@
     <div class="postreview">
         <MakerBrand :maker="maker" />
         <NavNavBarOnDetail :maker="maker" class="fixed" />
-        <RevPostJoin :maker="maker" :isposted="isposted" class="mx-auto py-4" />
+        <RevPostJoin :maker="maker" :pk="isposted.RevPosted" :review="review" class="mx-auto py-4" />
     </div>
 </template>
 
@@ -15,11 +15,14 @@ export default {
     components: {
         MakerBrand, NavNavBarOnDetail, RevPostJoin
     },
-    async asyncData({ $axios, params, $REVIEW_URL_FILTERED_BY_MAKER, $MAKER_URL, $ISPOST_URL }) {
-        const reviews = await $axios.$get($REVIEW_URL_FILTERED_BY_MAKER + `${params.pk}`)
+    async asyncData({ $axios, params, $REVIEW_URL, $MAKER_URL, $ISPOST_URL }) {
+        var review
         const maker = await $axios.$get($MAKER_URL + `${params.pk}`  + '/')
         const isposted = await $axios.$get($ISPOST_URL + maker.name_eng + '/')
-        return {reviews, maker, isposted}
+        if (isposted.RevPosted != ""){
+            review = await $axios.$get($REVIEW_URL + isposted.RevPosted + '/')
+        }
+        return {review, maker, isposted}
     },
 }
 </script>

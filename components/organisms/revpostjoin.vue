@@ -101,7 +101,7 @@ export default {
     components: {
         RevPost, GeneralButton, SelectBox
     },
-    props:['maker', 'isposted'],
+    props:['maker', 'pk', 'review'],
     methods: {
         Stared:function (resbody) {
             this.resbody = resbody
@@ -121,20 +121,33 @@ export default {
             this.submit()
         },
         submit: async function () {
-            const response = await this.$axios.$post(this.$REVIEW_URL, this.resbody)
-                .then(
-                    response => this.$router.push('/review/' + response.maker_name)
-                )
-                .catch(
-                    error => console.log(error)
-                )
+            if (this.pk == ""){
+                const response = await this.$axios.$post(this.$REVIEW_URL, this.resbody)
+                    .then(
+                        response => this.$router.push('/review/' + response.maker_name)
+                    )
+                    .catch(
+                        error => console.log(error)
+                    )
+            } else {
+                const response = await this.$axios.$put(this.$REVIEW_URL + this.pk + '/', this.resbody)
+                    .then(
+                        response => this.$router.push('/review/' + response.maker_name)
+                    )
+                    .catch(
+                        error => console.log(error)
+                    )
+            }
         }
     },
     mounted() {
-        if (this.isposted.RevPosted == ""){
+        if (this.pk == ""){
             this.title="投稿"
         } else {
-            this.title="更新"
+            this.title="修正"
+            this.resbody.status = this.review.status
+            this.resbody.costrate = this.review.costrate 
+            this.resbody.costcomment = this.review.costcomment
         }
     }
 }
