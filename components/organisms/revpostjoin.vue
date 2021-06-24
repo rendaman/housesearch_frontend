@@ -54,12 +54,6 @@ export default {
                     rate:"specrate",
                     comment:"speccomment"
                 },
-                attach: {
-                    name: "attach",
-                    namekana: "付帯設備",
-                    rate:"attachrate",
-                    comment:"attachcomment"
-                },
                 guarantee: {
                     name: "guarantee",
                     namekana: "保証",
@@ -87,8 +81,6 @@ export default {
                 layoutcomment:"",
                 specrate:0,
                 speccomment:"",
-                attachrate:0,
-                attachcomment:"",
                 guaranteerate:0,
                 guaranteecomment:"",
                 salesrate:0,
@@ -114,8 +106,8 @@ export default {
         },
         Pushed:function () {
             var total = this.resbody.costrate + this.resbody.designrate + this.resbody.layoutrate + this.resbody.specrate
-                                     + this.resbody.attachrate + this.resbody.guaranteerate + this.resbody.salesrate
-            this.resbody.avgrate = parseFloat(total/7).toFixed(2)
+                                     + this.resbody.guaranteerate + this.resbody.salesrate
+            this.resbody.avgrate = parseFloat(total/6).toFixed(2)
             this.resbody.author = this.$auth.user
             this.resbody.maker_name = this.maker.name_eng
             this.submit()
@@ -127,7 +119,7 @@ export default {
                         response => this.$router.push('/review/' + response.maker_name)
                     )
                     .catch(
-                        error => console.log(error)
+                        error => alert("入力項目に誤りがあります")
                     )
             } else {
                 const response = await this.$axios.$put(this.$REVIEW_URL + this.pk + '/', this.resbody)
@@ -135,7 +127,7 @@ export default {
                         response => this.$router.push('/review/' + response.maker_name)
                     )
                     .catch(
-                        error => console.log(error)
+                        error => alert("入力項目に誤りがあります")
                     )
             }
         }
@@ -145,9 +137,6 @@ export default {
             this.title="投稿"
         } else {
             this.title="修正"
-            this.resbody.status = this.review.status
-            this.resbody.costrate = this.review.costrate 
-            this.resbody.costcomment = this.review.costcomment
         }
     }
 }

@@ -1,7 +1,6 @@
 <template>
     <div class="commentbox">
         <textarea v-model="inputText" required placeholder="この場所での自分の体験や感想を共有しましょう" @change="onChange"></textarea>
-        <p class="commentbox-valid" :class="{'invis': !invalid}">コメントを入力してください</p>
     </div>
 </template>
 
@@ -40,15 +39,7 @@ export default {
     methods: {
         onChange(event) {
             this.$emit('recvFunc', this.inputText);
-            this.validation();
         },
-        validation() {
-            if (this.inputText.length == 0) {
-                this.invalid = true
-            } else {
-                this.invalid = false
-            }
-        }
     },
 }
 </script>

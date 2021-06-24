@@ -1,16 +1,11 @@
 <template>
-    <div class="revpost">
-        <div class="revpost-titleandstar py-1">
+    <div class="exppost">
+        <div class="exppost-titleandstar py-1">
             <Require />
             <RevH3  class="px-3"
                     :revkey="revkey.namekana" 
             >
             </RevH3>
-        </div>
-        <div class="revpost-star py-1">
-            <RevStar    @recvFunc="updateRate"
-            >
-            </RevStar>
         </div>
         <div class="revost-comment py-1">
             <CommentBox     @recvFunc="updateComment"
@@ -23,7 +18,7 @@
 
 <style lang="scss">
 @import "@/assets/css/mixin.scss";
-.revpost {
+.exppost {
     max-width: 840px;
     &-titleandstar {
         display: inline;
@@ -41,10 +36,9 @@
 import CommentBox from '~/components/atoms/commentbox'
 import Require from '~/components/atoms/require'
 import RevH3 from '~/components/atoms/revh3'
-import RevStar from '~/components/atoms/revstar'
 
 export default {
-    components: {CommentBox, Require, RevH3, RevStar},
+    components: {CommentBox, Require, RevH3 },
     props: ['revkey', 'resbody'],
     data(){
         return {
@@ -53,15 +47,10 @@ export default {
     },
     methods: {
         updateComment(comment) {
-            var valname = this.revkey.comment
+            var valname = this.revkey.name
             eval("this.resbody." + valname + "= comment");
             this.$emit('commentUpdate', this.resbody)
         },
-        updateRate(rate) {
-            var valname = this.revkey.rate
-            eval("this.resbody." + valname + "= rate");
-            this.$emit('rateUpdate', this.resbody)
-        }
     },
 }
 </script>

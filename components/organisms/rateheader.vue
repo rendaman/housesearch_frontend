@@ -2,11 +2,11 @@
     <div class="rateheader">
         <p class="rateheader-review mx-5">クチコミ({{ maker.get_review_count }}件)</p>
         <div class="row">
-            <div class="col-3">
+            <div class="col-12 col-lg-3">
                 <TotalRate v-bind:maker="maker" />
             </div>
-            <div class="col-9 row">
-                <div class="col-4">
+            <div class="col-12 col-lg-9 row">
+                <div class="col-6">
                     <ReviewPoint>
                         <template v-slot:what>
                             費用
@@ -32,7 +32,7 @@
                         </template>
                     </ReviewPoint>
                 </div>
-                <div class="col-4">
+                <div class="col-6">
                     <ReviewPoint>
                         <template v-slot:what>
                             住宅の性能
@@ -43,22 +43,12 @@
                     </ReviewPoint>
                     <ReviewPoint>
                         <template v-slot:what>
-                            付帯設備
-                        </template>
-                        <template v-slot:how>
-                            {{ parseFloat(maker.get_attachavg).toFixed(2) }}
-                        </template>
-                    </ReviewPoint>
-                    <ReviewPoint>
-                        <template v-slot:what>
                             保証
                         </template>
                         <template v-slot:how>
                             {{ parseFloat(maker.get_guaranteeavg).toFixed(2) }}
                         </template>
                     </ReviewPoint>
-                </div>
-                <div class="col-4">
                     <ReviewPoint>
                         <template v-slot:what>
                             営業
@@ -81,6 +71,9 @@
         padding-top: 20px;
         font-weight: 700;
         font-size: 20px;
+        @include sp {
+            display: none;
+        }
     }
 }
 </style>

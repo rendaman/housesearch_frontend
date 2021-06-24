@@ -3,19 +3,19 @@
         <MakerBrand v-bind:maker="maker" />
         <NavNavBarOnDetail v-bind:maker="maker" class="fixed" />
         <div v-for="expense in expenses" :key="expense.pk">
-            <div class="mb-3">
+            <div v-if="!expense.hid" class="mb-3 mx-3">
                 <div class="row g-0">
                     <div class="col-md-8 col-12">
                         <div class="card-body">
                             <p class="card-text">現在：{{expense.status}}</p>
                             <p class="card-text">投稿者：{{expense.author}}さん</p>
-                            <p class="card-text">投稿日：{{expense.update_date}}</p>
+                            <p class="card-text">投稿日：{{expense.create_date}}</p>
                             <p class="card-text">費用：{{expense.cost}}万円</p>
                             <p class="card-text">坪数：{{expense.landarea}}坪</p>
                             <p class="card-text">グレード：{{expense.gradecomment}}</p>
                             <p class="card-text">値上がりポイント：{{expense.costupcomment}}</p>
                             <p class="card-text">値下がりポイント：{{expense.costdowncomment}}</p>
-                            <img v-bind:src="expense.image_url" v-bind:alt="maker.name" v-bind:title="maker.name">
+                            <img v-if="expense.image_url!=''" :src="expense.image_url" :alt="maker.name" :title="maker.name">
                         </div>
                     </div>
                 </div>

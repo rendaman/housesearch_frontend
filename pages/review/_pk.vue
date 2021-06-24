@@ -3,7 +3,7 @@
         <MakerBrand :maker="maker" />
         <NavNavBarOnDetail :maker="maker" class="fixed" />
         <RateHeader :maker="maker" />
-        <div v-for="review in reviews" :key="review.pk">
+        <div v-for="review in reviews" :key="review.pk" class="mx-3">
             <ReviewCard :review="review" />
         </div>
     </div>

@@ -11,10 +11,10 @@
         </div>
         <div class="text-center top-message">
             <div class="my-5">
-                <h4>住宅メーカーのこだわりや特徴</h4>
+                <h4>住宅メーカーの口コミと見積り</h4>
             </div>
             <div class="mx-auto my-5 top-message-subtitle">
-                <p>こだわりや特徴を見比べて、最適な依頼先を見つけましょう。</p>
+                <p>間取りや見積りを見比べて、家づくりの参考にしましょう。</p>
             </div>
         </div>
         <div id="app">

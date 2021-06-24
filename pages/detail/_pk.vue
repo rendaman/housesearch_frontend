@@ -3,16 +3,6 @@
         <MakerBrand v-bind:maker="maker" />
         <NavNavBarOnDetail v-bind:maker="maker" class="fixed" />
         <RateHeader v-bind:maker="maker" />
-        <!--<table border="1">
-            <tr>
-                <th>平均費用</th>
-                <td>{{ parseFloat(maker.get_expense_avg).toFixed(1) }}万円</td>
-            </tr>
-            <tr>
-                <th>平均坪数(㎡)</th>
-                <td>{{ parseFloat(maker.get_landarea_avg).toFixed(1) }}坪 （{{ parseFloat(maker.get_landarea_avg*3.30579).toFixed(1) }}㎡）</td>
-            </tr>
-        </table>-->
         <div class="br">
         </div>
     </div>

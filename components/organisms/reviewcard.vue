@@ -26,8 +26,6 @@
             <span class="reviewcard-value">{{ parseFloat(review.layoutrate).toFixed(1) }}</span>
             <span class="reviewcard-key">住宅の性能</span>
             <span class="reviewcard-value">{{ parseFloat(review.specrate).toFixed(1) }}</span>
-            <span class="reviewcard-key">付帯設備</span>
-            <span class="reviewcard-value">{{ parseFloat(review.attachrate).toFixed(1) }}</span>
             <span class="reviewcard-key">保証</span>
             <span class="reviewcard-value">{{ parseFloat(review.guaranteerate).toFixed(1) }}</span>
             <span class="reviewcard-key">営業</span>
@@ -51,10 +49,6 @@
                 <div>
                     <span class="reviewcard-comment-key">住宅の性能：</span>
                     <span class="reviewcard-comment-comment">{{review.speccomment}}</span>
-                </div>
-                <div>
-                    <span class="reviewcard-comment-key">付帯設備：</span>
-                    <span class="reviewcard-comment-comment">{{review.attachcomment}}</span>
                 </div>
                 <div>
                     <span class="reviewcard-comment-key">保証：</span>
