@@ -1,5 +1,6 @@
 <template>
-    <div class="exppostjoin mx-auto">
+    <div class="exppostjoin">
+        <div class="mx-auto">
         <SelectBox  :pholder="'現在のご状況を教えてください'"
                     :options="['見積中', '完成']"
                     :title="`現在のご状況`"
@@ -19,11 +20,14 @@
                         @commentUpdate="Texted">
             </ExpPost>
         </div>
-        <input type="file" v-on:change="select_file" class="py-2"/>
+        <div class="uploadbtn mx-auto py-2">
+            <input type="file" v-on:change="select_file"/>
+        </div>
         <GeneralButton  class="my-5 mx-auto text-center" 
                         :title="buttonlabel"
                         @sendButtonPush="Pushed">
         </GeneralButton>
+    </div>
     </div>
 </template>
 
@@ -113,8 +117,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" >
+@import "@/assets/css/mixin.scss";
 .exppostjoin{
+    margin-right: 16px;
+    margin-left: 16px;
+}
+.uploadbtn {
     max-width: 840px;
 }
 </style>

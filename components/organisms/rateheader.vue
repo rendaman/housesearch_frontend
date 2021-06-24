@@ -1,11 +1,11 @@
 <template>
     <div class="rateheader">
         <p class="rateheader-review mx-5">クチコミ({{ maker.get_review_count }}件)</p>
-        <div class="row">
+        <div class="rateheader-row row">
             <div class="col-12 col-lg-3">
                 <TotalRate v-bind:maker="maker" />
             </div>
-            <div class="col-12 col-lg-9 row">
+            <div class="col-12 col-lg-9 row rateheader-row-reviewpoint">
                 <div class="col-6">
                     <ReviewPoint>
                         <template v-slot:what>
@@ -35,7 +35,7 @@
                 <div class="col-6">
                     <ReviewPoint>
                         <template v-slot:what>
-                            住宅の性能
+                            性能
                         </template>
                         <template v-slot:how>
                             {{ parseFloat(maker.get_specavg).toFixed(2) }}
@@ -67,6 +67,14 @@
 @import "@/assets/css/mixin.scss";
 .rateheader{
     overflow: hidden;
+    &-row {
+        &-reviewpoint {
+            @include tab {
+                margin-right: 0;
+                margin-left: 0;
+            }           
+        }
+    }
     &-review {
         padding-top: 20px;
         font-weight: 700;

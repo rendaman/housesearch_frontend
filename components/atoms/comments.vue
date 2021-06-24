@@ -15,6 +15,11 @@
         border-radius: 4px;
         background-color: #f8f7f7;
         font-size: 13px;
+        @include tab {
+            border: none;
+            background-color: transparent;
+            padding: 0;
+        }
     }
 }
 </style>

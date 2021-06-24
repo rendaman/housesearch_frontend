@@ -38,9 +38,6 @@
             color: #333;
             transition: opacity .2s ease;
             overflow: hidden;
-            @include sp {
-                font-weight: 300;
-            }
             i {
                 color: $maincolor;
             }

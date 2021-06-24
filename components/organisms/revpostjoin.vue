@@ -50,7 +50,7 @@ export default {
                 },
                 spec: {
                     name: "spec",
-                    namekana: "住宅の性能",
+                    namekana: "性能",
                     rate:"specrate",
                     comment:"speccomment"
                 },
@@ -142,5 +142,10 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+@import "@/assets/css/mixin.scss";
+.revpostjoin {
+    margin-right: 16px;
+    margin-left: 16px;
+}
 </style>

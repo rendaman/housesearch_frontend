@@ -2,7 +2,7 @@
     <div class="postexpense">
         <MakerBrand :maker="maker" />
         <NavNavBarOnDetail :maker="maker" class="fixed" />
-        <ExpPostJoin :maker="maker" :pk="isposted.ExpPosted" :expense="expense" class="mx-auto py-4" />
+        <ExpPostJoin :maker="maker" :pk="isposted.ExpPosted" :expense="expense" class="py-4" />
     </div>
 </template>
 

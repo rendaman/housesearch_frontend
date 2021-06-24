@@ -1,6 +1,6 @@
 <template>
     <div class="footercomp">    
-        <footer class="footercomp-container text-center pb-5">
+        <footer class="footercomp-container text-center py-5">
             <p> Please Share House Search! </p>
             <a class="footercomp-container-sns" href="https://www.facebook.com/sharer/sharer.php?u=https://rendaman.net" target="_blank">
                 <i class="bi bi-facebook"></i>
