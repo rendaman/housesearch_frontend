@@ -1,7 +1,7 @@
 <template>
     <div class="totalrate">
         <div class="totalrate-content text-center py-4 mx-auto row">
-            <div class="totalrate-content-title">総合評価<span class="totalrate-content-title-reviews">({{ maker.get_review_count }}件)</span></div>
+            <div class="totalrate-content-title pb-3">総合評価<span class="totalrate-content-title-reviews">({{ maker.get_review_count }}件)</span></div>
             <p class="totalrate-content-value">{{ parseFloat(maker.get_rateavg).toFixed(2) }}</p>
             <div class="totalrate-content-star">
                 <client-only>

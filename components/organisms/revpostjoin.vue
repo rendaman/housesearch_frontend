@@ -17,7 +17,7 @@
         </div>
         <GeneralButton  class="my-5 mx-auto text-center" 
                         :title="title"
-                        @sendButtonPush="Pushed">
+                        @sendButtonPush="submit">
         </GeneralButton>
     </div>
 </template>
@@ -71,7 +71,6 @@ export default {
             title: "",
             pholder: "現在のご状況を教えてください",
             resbody: {
-                author:"",
                 status:"",
                 costrate:0,
                 costcomment:"",
@@ -85,8 +84,6 @@ export default {
                 guaranteecomment:"",
                 salesrate:0,
                 salescomment:"",
-                maker_name:"",
-                avgrate:0.00
             },
         }
     },
@@ -104,31 +101,43 @@ export default {
         Statused:function (value) {
             this.resbody.status = value
         },
-        Pushed:function () {
-            var total = this.resbody.costrate + this.resbody.designrate + this.resbody.layoutrate + this.resbody.specrate
-                                     + this.resbody.guaranteerate + this.resbody.salesrate
-            this.resbody.avgrate = parseFloat(total/6).toFixed(2)
-            this.resbody.author = this.$auth.user
-            this.resbody.maker_name = this.maker.name_eng
-            this.submit()
-        },
         submit: async function () {
+            let formdata = new FormData
+            const total = this.resbody.costrate + this.resbody.designrate + this.resbody.layoutrate + this.resbody.specrate
+                                     + this.resbody.guaranteerate + this.resbody.salesrate
+            formdata.append('author', this.$auth.user)
+            formdata.append('maker_name', this.maker.name_eng)
+            formdata.append('status', this.resbody.status)
+            formdata.append('costrate', this.resbody.costrate)
+            formdata.append('costcomment', this.resbody.costcomment)
+            formdata.append('designrate', this.resbody.designrate)
+            formdata.append('designcomment', this.resbody.designcomment)
+            formdata.append('layoutrate', this.resbody.layoutrate)
+            formdata.append('layoutcomment', this.resbody.layoutcomment)
+            formdata.append('specrate', this.resbody.specrate)
+            formdata.append('speccomment', this.resbody.speccomment)
+            formdata.append('guaranteerate', this.resbody.guaranteerate)
+            formdata.append('guaranteecomment', this.resbody.guaranteecomment)
+            formdata.append('salesrate', this.resbody.salesrate)
+            formdata.append('salescomment', this.resbody.salescomment)
+            formdata.append('avgrate', parseFloat(total/6).toFixed(2))
+
             if (this.pk == ""){
-                const response = await this.$axios.$post(this.$REVIEW_URL, this.resbody)
-                    .then(
-                        response => this.$router.push('/review/' + response.maker_name)
-                    )
-                    .catch(
-                        error => alert("入力項目に誤りがあります")
-                    )
+                const response = await this.$axios.$post(this.$REVIEW_URL, formdata)
+                .then(
+                    response => this.$router.push('/review/' + response.maker_name)
+                )
+                .catch(
+                    error => alert("入力項目に誤りがあります")
+                )
             } else {
-                const response = await this.$axios.$put(this.$REVIEW_URL + this.pk + '/', this.resbody)
-                    .then(
-                        response => this.$router.push('/review/' + response.maker_name)
-                    )
-                    .catch(
-                        error => alert("入力項目に誤りがあります")
-                    )
+                const response = await this.$axios.$put(this.$REVIEW_URL + this.pk + '/', formdata)
+                .then(
+                    response => this.$router.push('/review/' + response.maker_name)
+                )
+                .catch(
+                    error => alert("入力項目に誤りがあります")
+                )
             }
         }
     },

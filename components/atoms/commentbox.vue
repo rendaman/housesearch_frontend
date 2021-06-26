@@ -33,9 +33,9 @@ export default {
     data () {
         return {
             invalid: false,
+            inputText:"",
         }
     },
-    props: ['inputText'],
     methods: {
         onChange(event) {
             this.$emit('recvFunc', this.inputText);

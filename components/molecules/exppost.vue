@@ -9,7 +9,6 @@
         </div>
         <div class="revost-comment py-1">
             <CommentBox     @recvFunc="updateComment"
-                            :inputText="inputText"
             >
             </CommentBox>
         </div>

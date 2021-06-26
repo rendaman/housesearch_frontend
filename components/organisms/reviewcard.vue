@@ -67,24 +67,24 @@
 .reviewcard {
     max-width: 840px;
     font-size: 14px;
-    @include tab {
+    @include sp {
         border-bottom: 1px dashed #ccc;
     }
     &-eachrate {
         &-key {
-            @include tab {
+            @include sp {
                 display: none;
             }
         }
         &-value {
-            @include tab {
+            @include sp {
                 display: none;
             }
         }
         &-date {
             float:right;
             color: #999;
-            @include tab {
+            @include sp {
                 float: none;
             }
         }

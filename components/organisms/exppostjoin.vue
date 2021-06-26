@@ -21,11 +21,12 @@
             </ExpPost>
         </div>
         <div class="uploadbtn mx-auto py-2">
-            <input type="file" v-on:change="select_file"/>
+            <input multiple type="file" v-on:change="select_expfile"/>
+            <input multiple type="file" v-on:change="select_layoutfile"/>
         </div>
         <GeneralButton  class="my-5 mx-auto text-center" 
                         :title="buttonlabel"
-                        @sendButtonPush="Pushed">
+                        @sendButtonPush="submit">
         </GeneralButton>
     </div>
     </div>
@@ -58,16 +59,14 @@ export default {
                 },
             } ,
             resbody: {
-                author:"",
                 status:"",
-                hid: "True",
                 cost:0,
                 landarea:0,
                 gradecomment:"",
                 costupcomment:"",
                 costdowncomment:"",
-                maker_name:"",
-                image: null,
+                expimage: null,
+                layoutimage: null,
             },
         }
     },
@@ -79,25 +78,35 @@ export default {
         Statused:function (value) {
             this.resbody.status = value
         },
-        Pushed:function () {
-            this.resbody.author = this.$auth.user
-            this.resbody.maker_name = this.maker.name_eng
-            this.submit()
+        select_expfile:function(e){
+            this.resbody.expimage = e.target.files[0]
         },
-        select_file:function(e){
-            this.resbody.image = e.target.files[0]
+        select_layoutfile:function(e){
+            this.resbody.layoutimage = e.target.files[0]
         },
         submit: async function () {
+            let formdata = new FormData
+            formdata.append('author', this.$auth.user)
+            formdata.append('status', this.resbody.status)
+            formdata.append('maker_name', this.maker.name_eng)
+            formdata.append('cost', this.resbody.cost)
+            formdata.append('landarea', this.resbody.landarea)
+            formdata.append('gradecomment', this.resbody.gradecomment)
+            formdata.append('costupcomment', this.resbody.costupcomment)
+            formdata.append('costdowncomment', this.resbody.costdowncomment)
+            formdata.append('expimage', this.resbody.expimage)
+            formdata.append('layoutimage', this.resbody.layoutimage)
+            
             if (this.pk == ""){
-                const response = await this.$axios.$post(this.$EXPENSE_URL, this.resbody)
-                    .then(
-                        response => this.$router.push('/expense/' + response.maker_name)
-                    )
-                    .catch(
-                        error => alert("入力項目に誤りがあります")
-                    )
+                const response = await this.$axios.$post(this.$EXPENSE_URL, formdata)
+                .then(
+                    response => this.$router.push('/expense/' + response.maker_name)
+                )
+                .catch(
+                    error => alert("入力項目に誤りがあります")
+                )
             } else {
-                const response = await this.$axios.$put(this.$EXPENSE_URL + this.pk + '/', this.resbody)
+                const response = await this.$axios.$put(this.$EXPENSE_URL + this.pk + '/', formdata)
                     .then(
                         response => this.$router.push('/expense/' + response.maker_name)
                     )

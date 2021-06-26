@@ -27,7 +27,7 @@
                 <div v-for="maker in filteredMakers" :key="maker.pk">
                     <div class="card-container">
                         <div class="mx-auto px-4 col card-col">
-                            <nuxt-link :to="`/detail/${maker.name_eng}`" class="my-3">
+                            <nuxt-link :to="`/review/${maker.name_eng}`" class="my-3">
                                 <div class="maker-card p-2">
                                     <div class="row">
                                         <div class="col-5 maker-card-image">

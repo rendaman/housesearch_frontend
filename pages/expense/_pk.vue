@@ -15,7 +15,8 @@
                             <p class="card-text">グレード：{{expense.gradecomment}}</p>
                             <p class="card-text">値上がりポイント：{{expense.costupcomment}}</p>
                             <p class="card-text">値下がりポイント：{{expense.costdowncomment}}</p>
-                            <img v-if="expense.image_url!=''" :src="expense.image_url" :alt="maker.name" :title="maker.name">
+                            <img v-if="expense.expimage!=''" :src="expense.expimage" :alt="maker.name" :title="maker.name">
+                            <img v-if="expense.layoutimage!=''" :src="expense.layoutimage" :alt="maker.name" :title="maker.name">
                         </div>
                     </div>
                 </div>

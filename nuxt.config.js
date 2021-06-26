@@ -98,12 +98,19 @@ export default {
       local: {
         token: {
           property: 'token',
+          maxAge: 86400,
           type: 'JWT'
+        },
+        refreshToken: {
+          property: 'refresh_token',
+          data: 'refresh_token',
+          maxAge: 60 * 60 * 24 * 30
         },
         endpoints: {
           login: { url: 'https://rendaman.net/api/auth/', method: 'post'},
           logout: false,
-          user: { url: 'https://rendaman.net/api/v1/user/', method: 'get', propertyName: 'username'}
+          user: { url: 'https://rendaman.net/api/v1/user/', method: 'get', propertyName: 'username'},
+          refresh: { url: 'https://rendaman.net/api/auth/refresh/', method: 'post' },
         },
         tokenType: 'JWT'
       }
