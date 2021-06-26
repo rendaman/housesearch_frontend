@@ -21,8 +21,14 @@
             </ExpPost>
         </div>
         <div class="uploadbtn mx-auto py-2">
-            <input multiple type="file" v-on:change="select_expfile"/>
-            <input multiple type="file" v-on:change="select_layoutfile"/>
+            <div class="uploadbtn-notice pb-2">
+                <p class="uploadbtn-notice-main">3ポイントを確認して投稿してください。</p>
+                <p class="uploadbtn-notice-sub">1.個人情報部分は隠蔽すること</p>
+                <p class="uploadbtn-notice-sub">2.文字が読み取れること</p>
+                <p class="uploadbtn-notice-sub">3.複数枚ある場合は、全て撮影すること</p>
+            </div>
+            見積書：<input multiple type="file" v-on:change="select_expfile"/>
+            間取図：<input multiple type="file" v-on:change="select_layoutfile"/>
         </div>
         <GeneralButton  class="my-5 mx-auto text-center" 
                         :title="buttonlabel"
@@ -100,7 +106,7 @@ export default {
             if (this.pk == ""){
                 const response = await this.$axios.$post(this.$EXPENSE_URL, formdata)
                 .then(
-                    response => this.$router.push('/expense/' + response.maker_name)
+                    response => this.$router.push('/postexpcomp/' + response.maker_name)
                 )
                 .catch(
                     error => alert("入力項目に誤りがあります")
@@ -108,7 +114,7 @@ export default {
             } else {
                 const response = await this.$axios.$put(this.$EXPENSE_URL + this.pk + '/', formdata)
                     .then(
-                        response => this.$router.push('/expense/' + response.maker_name)
+                        response => this.$router.push('/postexpcomp/' + response.maker_name)
                     )
                     .catch(
                         error => alert("入力項目に誤りがあります")
@@ -134,5 +140,18 @@ export default {
 }
 .uploadbtn {
     max-width: 840px;
+    &-notice {
+        &-main {
+            background-color: #DDD;
+            border-radius: 5px;
+            font-weight: 700;
+            padding: 0.5rem;
+        }
+        &-sub {
+            font-size: 12px;
+            padding-left: 1rem;
+            font-weight: 700;
+        }
+    }
 }
 </style>

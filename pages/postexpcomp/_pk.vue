@@ -1,32 +1,37 @@
 <template>
-    <div class="expense">
+    <div class="postexpcomp">
         <MakerBrand v-bind:maker="maker" />
         <NavNavBarOnDetail v-bind:maker="maker" class="fixed" />
-        <div v-for="expense in expenses" :key="expense.pk" class="mx-3">
-            <div v-if="!expense.hid">
-                <ExpCard :expense="expense" />
-            </div>
+        <div class="postexpcomp-main mx-3 text-center">
+            投稿ありがとうございます。運営で確認後、掲載させていただきます。
         </div>
     </div>
 </template>
-
+s
 <script>
 import MakerBrand from '~/components/molecules/maker-brand.vue'
 import NavNavBarOnDetail from '~/components/molecules/nav-navbarondetail'
-import ExpCard from '~/components/organisms/expcard'
 export default {
     components: {
-        MakerBrand, NavNavBarOnDetail, ExpCard,
+        MakerBrand, NavNavBarOnDetail,
     },
-    async asyncData({ $axios, params, $MAKER_URL, $EXPENSE_URL_FILTERED_BY_MAKER }) {
-        const expenses = await $axios.$get($EXPENSE_URL_FILTERED_BY_MAKER + `${params.pk}`)
+    async asyncData({ $axios, params, $MAKER_URL}) {
         const maker = await $axios.$get($MAKER_URL + `${params.pk}`  + '/')
-        return {expenses,maker}
+        return {maker}
     },
 }
 </script>
 
 <style lang="scss">
+.postexpcomp {
+    &-main {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+        color: #333;
+        font-weight: 700;
+        font-size: 20px;
+    }
+}
 .fixed {
     position: -webkit-sticky;
     position: sticky;

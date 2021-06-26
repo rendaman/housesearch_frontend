@@ -2,7 +2,7 @@
     <div class="signup">
         <main class="form-signin">
             <form class="form-signin" method="POST" action=''>
-                <h1 class="h5 mb-3 fw-normal">会員登録入力</h1>
+                <h1 class="h5 mb-3 fw-normal">会員登録はこちらから</h1>
                 <label for="inputEmail" class="visually-hidden">ユーザ名</label>
                 <input type="text" class="form-control" name='username' placeholder="ユーザ名" required autofocus>
                 <label for="inputPassword" class="visually-hidden">パスワード</label>
