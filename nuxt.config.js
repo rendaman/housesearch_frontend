@@ -85,6 +85,12 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/auth',
     '@nuxtjs/dotenv',
+    ['@nuxtjs/google-adsense', {
+      id: 'ca-pub-3775560278137053',
+      pageLevelAds: true,
+      analyticsUacct: '27146816',
+      analyticsDomainName: 'rendaman.net'
+    }]
   ],
   proxy: {
     '/api/': 'https://rendaman.net',
