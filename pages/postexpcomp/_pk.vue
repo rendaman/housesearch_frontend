@@ -3,7 +3,7 @@
         <MakerBrand v-bind:maker="maker" />
         <NavNavBarOnDetail v-bind:maker="maker" class="fixed" />
         <div class="postexpcomp-main mx-3 text-center">
-            投稿ありがとうございます。運営で確認後、掲載させていただきます。
+            ご投稿いただきありがとうございました。運営で確認後、費用明細を掲載させていただきます。
         </div>
     </div>
 </template>

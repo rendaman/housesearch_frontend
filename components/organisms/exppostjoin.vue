@@ -94,6 +94,7 @@ export default {
             let formdata = new FormData
             formdata.append('author', this.$auth.user)
             formdata.append('status', this.resbody.status)
+            formdata.append('hid', "True")
             formdata.append('maker_name', this.maker.name_eng)
             formdata.append('cost', this.resbody.cost)
             formdata.append('landarea', this.resbody.landarea)

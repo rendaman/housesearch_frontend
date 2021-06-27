@@ -35,27 +35,27 @@
             <Comments>
                 <div>
                     <span class="reviewcard-comment-key">費用</span>
-                    <span class="reviewcard-comment-comment">{{review.costcomment}}</span>
+                    <p class="reviewcard-comment-comment">{{review.costcomment}}</p>
                 </div>
                 <div>
                     <span class="reviewcard-comment-key">デザイン</span>
-                    <span class="reviewcard-comment-comment">{{review.designcomment}}</span>
+                    <p class="reviewcard-comment-comment">{{review.designcomment}}</p>
                 </div>
                 <div>
                     <span class="reviewcard-comment-key">間取り</span>
-                    <span class="reviewcard-comment-comment">{{review.layoutcomment}}</span>
+                    <p class="reviewcard-comment-comment">{{review.layoutcomment}}</p>
                 </div>
                 <div>
                     <span class="reviewcard-comment-key">性能</span>
-                    <span class="reviewcard-comment-comment">{{review.speccomment}}</span>
+                    <p class="reviewcard-comment-comment">{{review.speccomment}}</p>
                 </div>
                 <div>
                     <span class="reviewcard-comment-key">保証</span>
-                    <span class="reviewcard-comment-comment">{{review.guaranteecomment}}</span>
+                    <p class="reviewcard-comment-comment">{{review.guaranteecomment}}</p>
                 </div>
                 <div>
                     <span class="reviewcard-comment-key">営業</span>
-                    <span class="reviewcard-comment-comment">{{review.salescomment}}</span>
+                    <p class="reviewcard-comment-comment">{{review.salescomment}}</p>
                 </div>
             </Comments>
         </div>
